@@ -47,8 +47,8 @@ export default function InteractiveProfile({
     }
   };
 
-  // Calculate rotation based on mouse position relative to element center
-  const calculateRotation = () => {
+  // Calculate movement and rotation to "look" at mouse
+  const calculateLookDirection = () => {
     const deltaX = mousePosition.x - elementPosition.x;
     const deltaY = mousePosition.y - elementPosition.y;
     
@@ -56,28 +56,28 @@ export default function InteractiveProfile({
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     const maxDistance = 300; // Maximum effective distance
     const normalizedDistance = Math.min(distance / maxDistance, 1);
-    const intensity = Math.max(0.5, 1 - normalizedDistance * 0.5);
+    const intensity = Math.max(0.3, 1 - normalizedDistance * 0.7);
     
-    // Calculate angle to mouse position
-    const angle = Math.atan2(deltaY, deltaX);
+    // Calculate translation movement (how much the image moves within its container)
+    const maxMovement = 15; // Maximum pixels to move
+    const translateX = (deltaX / maxDistance) * maxMovement * intensity;
+    const translateY = (deltaY / maxDistance) * maxMovement * intensity;
     
-    // Convert to rotation values for "looking" at mouse
-    // The profile should rotate to face the mouse direction
-    const maxTilt = 25; // Maximum rotation in degrees
+    // Add subtle rotation for more natural effect
+    const maxRotation = 8;
+    const rotateX = -(deltaY / maxDistance) * maxRotation * intensity;
+    const rotateY = (deltaX / maxDistance) * maxRotation * intensity;
     
-    // For looking up/down (rotateX - around X axis)
-    const rotateX = Math.sin(angle + Math.PI/2) * maxTilt * intensity;
-    
-    // For looking left/right (rotateY - around Y axis) 
-    const rotateY = Math.cos(angle) * maxTilt * intensity;
-    
-    // Also add slight Z rotation for more natural look
-    const rotateZ = Math.sin(angle * 2) * 5 * intensity;
-    
-    return { rotateX, rotateY, rotateZ, intensity };
+    return { 
+      translateX: Math.max(-maxMovement, Math.min(maxMovement, translateX)),
+      translateY: Math.max(-maxMovement, Math.min(maxMovement, translateY)),
+      rotateX: Math.max(-maxRotation, Math.min(maxRotation, rotateX)),
+      rotateY: Math.max(-maxRotation, Math.min(maxRotation, rotateY)),
+      intensity 
+    };
   };
 
-  const { rotateX, rotateY, rotateZ, intensity } = calculateRotation();
+  const { translateX, translateY, rotateX, rotateY, intensity } = calculateLookDirection();
 
   return (
     <motion.div
@@ -85,9 +85,10 @@ export default function InteractiveProfile({
       className={`relative ${className}`}
       style={{ width: size, height: size }}
       animate={{
+        x: translateX,
+        y: translateY,
         rotateX,
         rotateY,
-        rotateZ,
       }}
       transition={{
         type: "spring",
