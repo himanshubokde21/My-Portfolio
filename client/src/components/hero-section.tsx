@@ -50,7 +50,7 @@ export default function HeroSection() {
               className="mx-auto mb-6"
             >
               <InteractiveProfile 
-                size={128}
+                size={200}
                 imageUrl="/profile-avatar.svg"
               />
             </motion.div>

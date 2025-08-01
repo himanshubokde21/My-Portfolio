@@ -41,29 +41,30 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Centered Profile Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
+            whileHover={{ rotate: 0 }}
+            className="inline-block bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl transform rotate-3 transition-transform duration-500 p-8"
           >
-            <motion.div
-              whileHover={{ rotate: 0 }}
-              className="w-full h-96 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl transform rotate-3 transition-transform duration-500 flex items-center justify-center"
-            >
-              <InteractiveProfile 
-                size={200}
-                className="transform -rotate-3"
-                imageUrl="/profile-avatar.svg"
-              />
-            </motion.div>
+            <InteractiveProfile 
+              size={250}
+              className="transform -rotate-3"
+              imageUrl="/profile-avatar.svg"
+            />
           </motion.div>
+        </motion.div>
 
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
@@ -77,7 +78,7 @@ export default function AboutSection() {
               or hiking the beautiful trails around the Bay Area.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 mt-12">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
