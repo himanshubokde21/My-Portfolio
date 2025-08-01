@@ -38,6 +38,7 @@ Preferred communication style: Simple, everyday language.
 ### Frontend Components
 - **Navigation**: Responsive navigation with smooth scrolling and active section tracking
 - **Hero Section**: Landing area with animated elements and call-to-action buttons
+- **Interactive Profile**: Mouse-tracking profile image with 3D rotation effects and dynamic glow
 - **About Section**: Personal information with animated statistics counters
 - **Portfolio Section**: Project showcase with hover effects and external links
 - **Skills Section**: Technical skills display with animated progress bars

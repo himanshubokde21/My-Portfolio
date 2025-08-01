@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
+import InteractiveProfile from "./interactive-profile";
 
 const stats = [
   { target: 50, label: "Projects Completed" },
@@ -51,11 +51,13 @@ export default function AboutSection() {
           >
             <motion.div
               whileHover={{ rotate: 0 }}
-              className="w-full h-96 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl transform rotate-3 transition-transform duration-500"
+              className="w-full h-96 bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl transform rotate-3 transition-transform duration-500 flex items-center justify-center"
             >
-              <div className="absolute inset-4 bg-gray-200 rounded-xl flex items-center justify-center">
-                <User className="text-6xl text-gray-400" size={96} />
-              </div>
+              <InteractiveProfile 
+                size={200}
+                className="transform -rotate-3"
+                imageUrl="/profile-avatar.svg"
+              />
             </motion.div>
           </motion.div>
 

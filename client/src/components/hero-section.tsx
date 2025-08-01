@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Code } from "lucide-react";
 import SparkleButton from "./sparkle-button";
+import InteractiveProfile from "./interactive-profile";
 
 export default function HeroSection() {
   const handleScrollToPortfolio = () => {
@@ -47,9 +47,12 @@ export default function HeroSection() {
             <motion.div
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center"
+              className="mx-auto mb-6"
             >
-              <Code className="text-4xl text-white" size={48} />
+              <InteractiveProfile 
+                size={128}
+                imageUrl="/profile-avatar.svg"
+              />
             </motion.div>
           </motion.div>
 

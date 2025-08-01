@@ -1,0 +1,144 @@
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+interface InteractiveProfileProps {
+  imageUrl?: string;
+  size?: number;
+  className?: string;
+}
+
+export default function InteractiveProfile({ 
+  imageUrl, 
+  size = 128, 
+  className = "" 
+}: InteractiveProfileProps) {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [elementPosition, setElementPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const updateElementPosition = (element: HTMLElement | null) => {
+    if (element) {
+      const updatePosition = () => {
+        const rect = element.getBoundingClientRect();
+        setElementPosition({
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        });
+      };
+      
+      updatePosition();
+      
+      // Update position on scroll and resize
+      window.addEventListener('scroll', updatePosition);
+      window.addEventListener('resize', updatePosition);
+      
+      return () => {
+        window.removeEventListener('scroll', updatePosition);
+        window.removeEventListener('resize', updatePosition);
+      };
+    }
+  };
+
+  // Calculate rotation based on mouse position relative to element center
+  const calculateRotation = () => {
+    const deltaX = mousePosition.x - elementPosition.x;
+    const deltaY = mousePosition.y - elementPosition.y;
+    
+    // Calculate distance for more nuanced effects
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    const maxDistance = 500; // Maximum effective distance
+    const normalizedDistance = Math.min(distance / maxDistance, 1);
+    
+    // Limit rotation to a reasonable range with distance-based intensity
+    const maxRotation = 20;
+    const intensity = Math.max(0.3, 1 - normalizedDistance * 0.7); // Minimum 30% intensity
+    
+    const rotateX = Math.max(-maxRotation, Math.min(maxRotation, deltaY * 0.02 * intensity));
+    const rotateY = Math.max(-maxRotation, Math.min(maxRotation, deltaX * 0.02 * intensity));
+    
+    return { rotateX: -rotateX, rotateY, intensity };
+  };
+
+  const { rotateX, rotateY, intensity } = calculateRotation();
+
+  return (
+    <motion.div
+      ref={updateElementPosition}
+      className={`relative ${className}`}
+      style={{ width: size, height: size }}
+      animate={{
+        rotateX,
+        rotateY,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      }}
+      whileHover={{ scale: 1.05 }}
+    >
+      <div
+        className="w-full h-full rounded-full overflow-hidden backdrop-blur-md border-4 border-white/30 shadow-2xl"
+        style={imageUrl ? {
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        } : {
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1))'
+        }}
+      >
+        {/* Fallback icon if no image provided */}
+        {!imageUrl && (
+          <div className="w-full h-full flex items-center justify-center">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-white"
+            >
+              <path
+                d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+      
+      {/* Dynamic glow effect based on mouse interaction */}
+      <motion.div 
+        className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-sm -z-10"
+        animate={{
+          scale: 1 + intensity * 0.1,
+          opacity: 0.6 + intensity * 0.4,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 15,
+        }}
+      />
+    </motion.div>
+  );
+}
