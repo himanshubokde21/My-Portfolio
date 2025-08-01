@@ -47,56 +47,63 @@ export default function InteractiveProfile({
     }
   };
 
-  // Calculate movement and rotation to "look" at mouse
+  // Calculate 3D perspective rotation to "look" at mouse
   const calculateLookDirection = () => {
     const deltaX = mousePosition.x - elementPosition.x;
     const deltaY = mousePosition.y - elementPosition.y;
     
     // Calculate distance for intensity effects
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    const maxDistance = 300; // Maximum effective distance
+    const maxDistance = 400; // Maximum effective distance
     const normalizedDistance = Math.min(distance / maxDistance, 1);
-    const intensity = Math.max(0.3, 1 - normalizedDistance * 0.7);
+    const intensity = Math.max(0.2, 1 - normalizedDistance * 0.8);
     
-    // Calculate translation movement (how much the image moves within its container)
-    const maxMovement = 15; // Maximum pixels to move
-    const translateX = (deltaX / maxDistance) * maxMovement * intensity;
-    const translateY = (deltaY / maxDistance) * maxMovement * intensity;
+    // Calculate 3D rotation angles for perspective effect
+    const maxRotation = 25; // Maximum rotation in degrees
     
-    // Add subtle rotation for more natural effect
-    const maxRotation = 8;
-    const rotateX = -(deltaY / maxDistance) * maxRotation * intensity;
-    const rotateY = (deltaX / maxDistance) * maxRotation * intensity;
+    // Normalize mouse position relative to element (-1 to 1)
+    const normalizedX = deltaX / maxDistance;
+    const normalizedY = deltaY / maxDistance;
+    
+    // Calculate rotations for 3D perspective effect
+    const rotateY = normalizedX * maxRotation * intensity; // Horizontal look
+    const rotateX = -normalizedY * maxRotation * intensity; // Vertical look (negative for correct direction)
     
     return { 
-      translateX: Math.max(-maxMovement, Math.min(maxMovement, translateX)),
-      translateY: Math.max(-maxMovement, Math.min(maxMovement, translateY)),
       rotateX: Math.max(-maxRotation, Math.min(maxRotation, rotateX)),
       rotateY: Math.max(-maxRotation, Math.min(maxRotation, rotateY)),
       intensity 
     };
   };
 
-  const { translateX, translateY, rotateX, rotateY, intensity } = calculateLookDirection();
+  const { rotateX, rotateY, intensity } = calculateLookDirection();
 
   return (
-    <motion.div
-      ref={updateElementPosition}
+    <div 
       className={`relative ${className}`}
-      style={{ width: size, height: size }}
-      animate={{
-        x: translateX,
-        y: translateY,
-        rotateX,
-        rotateY,
+      style={{ 
+        width: size, 
+        height: size,
+        perspective: '1000px', // Add CSS perspective for 3D effect
       }}
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      }}
-      whileHover={{ scale: 1.05 }}
     >
+      <motion.div
+        ref={updateElementPosition}
+        className="w-full h-full"
+        animate={{
+          rotateX,
+          rotateY,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 150,
+          damping: 20,
+        }}
+        whileHover={{ scale: 1.05 }}
+        style={{
+          transformStyle: 'preserve-3d', // Preserve 3D transforms
+        }}
+      >
       <div
         className="w-full h-full rounded-full overflow-hidden backdrop-blur-md border-4 border-white/30 shadow-2xl"
         style={imageUrl ? {
@@ -151,6 +158,7 @@ export default function InteractiveProfile({
           damping: 15,
         }}
       />
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
