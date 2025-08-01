@@ -52,22 +52,32 @@ export default function InteractiveProfile({
     const deltaX = mousePosition.x - elementPosition.x;
     const deltaY = mousePosition.y - elementPosition.y;
     
-    // Calculate distance for more nuanced effects
+    // Calculate distance for intensity effects
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    const maxDistance = 500; // Maximum effective distance
+    const maxDistance = 300; // Maximum effective distance
     const normalizedDistance = Math.min(distance / maxDistance, 1);
+    const intensity = Math.max(0.5, 1 - normalizedDistance * 0.5);
     
-    // Limit rotation to a reasonable range with distance-based intensity
-    const maxRotation = 20;
-    const intensity = Math.max(0.3, 1 - normalizedDistance * 0.7); // Minimum 30% intensity
+    // Calculate angle to mouse position
+    const angle = Math.atan2(deltaY, deltaX);
     
-    const rotateX = Math.max(-maxRotation, Math.min(maxRotation, deltaY * 0.02 * intensity));
-    const rotateY = Math.max(-maxRotation, Math.min(maxRotation, deltaX * 0.02 * intensity));
+    // Convert to rotation values for "looking" at mouse
+    // The profile should rotate to face the mouse direction
+    const maxTilt = 25; // Maximum rotation in degrees
     
-    return { rotateX: -rotateX, rotateY, intensity };
+    // For looking up/down (rotateX - around X axis)
+    const rotateX = Math.sin(angle + Math.PI/2) * maxTilt * intensity;
+    
+    // For looking left/right (rotateY - around Y axis) 
+    const rotateY = Math.cos(angle) * maxTilt * intensity;
+    
+    // Also add slight Z rotation for more natural look
+    const rotateZ = Math.sin(angle * 2) * 5 * intensity;
+    
+    return { rotateX, rotateY, rotateZ, intensity };
   };
 
-  const { rotateX, rotateY, intensity } = calculateRotation();
+  const { rotateX, rotateY, rotateZ, intensity } = calculateRotation();
 
   return (
     <motion.div
@@ -77,6 +87,7 @@ export default function InteractiveProfile({
       animate={{
         rotateX,
         rotateY,
+        rotateZ,
       }}
       transition={{
         type: "spring",
