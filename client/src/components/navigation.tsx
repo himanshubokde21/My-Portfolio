@@ -53,11 +53,29 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200/50" : "bg-white/10 backdrop-blur-sm shadow-md"
-      }`}
+      className="fixed top-0 w-full z-40 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Animated Background */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          background: [
+            "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57)",
+            "linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b)",
+            "linear-gradient(45deg, #45b7d1, #96ceb4, #feca57, #ff6b6b, #4ecdc4)",
+            "linear-gradient(45deg, #96ceb4, #feca57, #ff6b6b, #4ecdc4, #45b7d1)",
+            "linear-gradient(45deg, #feca57, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4)",
+            "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57)"
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      />
+      <div className="relative bg-white/20 backdrop-blur-md border-b border-white/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <motion.div
             initial={{ opacity: 0 }}
@@ -71,13 +89,9 @@ export default function Navigation() {
                 e.preventDefault();
                 handleNavClick("#home");
               }}
-              className={`text-2xl font-bold transition-all duration-300 ${
-                isScrolled 
-                  ? "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" 
-                  : "text-white drop-shadow-lg"
-              }`}
+              className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent animate-pulse"
             >
-              Alex Chen
+              Himanshu Bokde
             </a>
           </motion.div>
 
@@ -101,15 +115,12 @@ export default function Navigation() {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-md relative overflow-hidden ${
-                    activeSection === item.href.replace("#", "")
-                      ? isScrolled 
-                        ? "text-primary bg-primary/15 shadow-sm" 
-                        : "text-white bg-white/20 shadow-lg backdrop-blur-sm"
-                      : isScrolled
-                        ? "text-gray-700 hover:text-primary hover:bg-primary/10"
-                        : "text-white/90 hover:text-white hover:bg-white/20 drop-shadow-md backdrop-blur-sm"
-                  }`}
+                  className="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg relative overflow-hidden bg-white/30 backdrop-blur-md border border-white/40"
+                  style={{
+                    color: activeSection === item.href.replace("#", "") ? "#FFD700" : "#FFFFFF",
+                    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                    fontWeight: activeSection === item.href.replace("#", "") ? "800" : "600"
+                  }}
                 >
                   {item.label}
                 </motion.a>
@@ -127,11 +138,10 @@ export default function Navigation() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
-                className={`transition-all duration-300 hover:shadow-md ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-primary hover:bg-primary/10"
-                    : "text-white hover:text-white hover:bg-white/20 backdrop-blur-sm"
-                }`}
+                className="transition-all duration-300 hover:shadow-md text-white bg-white/30 backdrop-blur-md border border-white/40 hover:bg-white/40"
+                style={{
+                  textShadow: "0 2px 4px rgba(0,0,0,0.3)"
+                }}
               >
                 <motion.div
                   animate={{ rotate: isOpen ? 180 : 0 }}
@@ -142,6 +152,7 @@ export default function Navigation() {
               </Button>
             </motion.div>
           </div>
+        </div>
         </div>
       </div>
 

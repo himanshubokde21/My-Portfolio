@@ -62,7 +62,7 @@ export default function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
           >
-            Hi, I'm <span className="bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">Alex Chen</span>
+            Hi, I'm <span className="bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">Himanshu Bokde</span>
           </motion.h1>
 
           <motion.div
@@ -71,7 +71,7 @@ export default function HeroSection() {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-xl sm:text-2xl md:text-3xl mb-8 h-16 flex items-center justify-center"
           >
-            <span className="typing-text font-light">Full Stack Developer & UI/UX Designer</span>
+            <span className="typing-text font-light">Data Scientist & AI/ML Engineer</span>
           </motion.div>
 
           <motion.p
@@ -80,7 +80,7 @@ export default function HeroSection() {
             transition={{ delay: 0.9, duration: 0.8 }}
             className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto opacity-90"
           >
-            I create beautiful, functional, and user-centered digital experiences that make a difference.
+            I transform complex data into actionable insights and build intelligent solutions using AI/ML technologies.
           </motion.p>
 
           <motion.div

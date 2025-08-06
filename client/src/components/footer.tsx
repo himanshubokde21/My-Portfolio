@@ -26,8 +26,8 @@ export default function Footer() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h3 className="text-2xl font-bold mb-4">Alex Chen</h3>
-          <p className="text-gray-400 mb-8">Full Stack Developer & UI/UX Designer</p>
+          <h3 className="text-2xl font-bold mb-4">Himanshu Bokde</h3>
+          <p className="text-gray-400 mb-8">Data Scientist & AI/ML Engineer</p>
           <div className="flex justify-center space-x-6 mb-8">
             {navLinks.map((link, index) => (
               <motion.a
