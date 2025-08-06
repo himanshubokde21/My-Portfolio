@@ -54,7 +54,7 @@ export default function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200/50" : "bg-white/10 backdrop-blur-sm shadow-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +71,11 @@ export default function Navigation() {
                 e.preventDefault();
                 handleNavClick("#home");
               }}
-              className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+              className={`text-2xl font-bold transition-all duration-300 ${
+                isScrolled 
+                  ? "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent" 
+                  : "text-white drop-shadow-lg"
+              }`}
             >
               Alex Chen
             </a>
@@ -86,15 +90,25 @@ export default function Navigation() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -2,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.95 }}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-primary/10 ${
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-md relative overflow-hidden ${
                     activeSection === item.href.replace("#", "")
-                      ? "text-primary bg-primary/10"
-                      : "text-gray-700 hover:text-primary"
+                      ? isScrolled 
+                        ? "text-primary bg-primary/15 shadow-sm" 
+                        : "text-white bg-white/20 shadow-lg backdrop-blur-sm"
+                      : isScrolled
+                        ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                        : "text-white/90 hover:text-white hover:bg-white/20 drop-shadow-md backdrop-blur-sm"
                   }`}
                 >
                   {item.label}
@@ -105,14 +119,28 @@ export default function Navigation() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-primary"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className={`transition-all duration-300 hover:shadow-md ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                    : "text-white hover:text-white hover:bg-white/20 backdrop-blur-sm"
+                }`}
+              >
+                <motion.div
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </motion.div>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -127,23 +155,32 @@ export default function Navigation() {
             transition={{ type: "tween", duration: 0.3 }}
             className="md:hidden fixed top-16 right-0 w-64 h-full bg-white shadow-xl"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <a
+            <div className="px-2 pt-2 pb-3 space-y-2">
+              {navItems.map((item, index) => (
+                <motion.a
                   key={item.href}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  whileHover={{ 
+                    x: 8, 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                  whileTap={{ scale: 0.98 }}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 hover:bg-primary/10 ${
+                  className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:shadow-md ${
                     activeSection === item.href.replace("#", "")
-                      ? "text-primary bg-primary/10"
-                      : "text-gray-700 hover:text-primary"
+                      ? "text-primary bg-primary/15 shadow-sm border-l-4 border-primary"
+                      : "text-gray-700 hover:text-primary hover:bg-primary/10"
                   }`}
                 >
                   {item.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>

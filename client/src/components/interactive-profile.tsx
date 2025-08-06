@@ -65,7 +65,7 @@ export default function InteractiveProfile({
   return (
     <div 
       ref={containerRef}
-      className={`relative ${className}`}
+      className={`relative mx-auto ${className}`}
       style={{ 
         width: size, 
         height: size,
