@@ -2,22 +2,27 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const technicalSkills = [
-  { name: "JavaScript / TypeScript", percentage: 95 },
-  { name: "React / Vue.js", percentage: 90 },
-  { name: "Node.js / Express", percentage: 85 },
-  { name: "Python / Django", percentage: 80 },
-  { name: "Database Management", percentage: 85 },
+  { name: "Data Science & Analysis", percentage: 92 },
+  { name: "Python / Machine Learning", percentage: 90 },
+  { name: "SQL / Database Management", percentage: 88 },
+  { name: "Web Development (Frontend)", percentage: 85 },
+  { name: "Power BI / Data Visualization", percentage: 80 },
+  { name: "JavaScript / TypeScript", percentage: 85 },
 ];
 
 const technologies = [
-  { name: "React", icon: "fab fa-react", color: "text-blue-500" },
-  { name: "Vue.js", icon: "fab fa-vuejs", color: "text-green-500" },
-  { name: "Node.js", icon: "fab fa-node-js", color: "text-green-600" },
   { name: "Python", icon: "fab fa-python", color: "text-blue-600" },
-  { name: "Docker", icon: "fab fa-docker", color: "text-blue-400" },
+  { name: "SQL", icon: "fas fa-database", color: "text-blue-500" },
+  { name: "MongoDB", icon: "fas fa-leaf", color: "text-green-600" },
+  { name: "Power BI", icon: "fas fa-chart-bar", color: "text-yellow-500" },
+  { name: "React", icon: "fab fa-react", color: "text-blue-500" },
+  { name: "JavaScript", icon: "fab fa-js-square", color: "text-yellow-600" },
+  { name: "Machine Learning", icon: "fas fa-brain", color: "text-purple-600" },
+  { name: "Data Analysis", icon: "fas fa-chart-line", color: "text-green-500" },
+  { name: "AI/ML", icon: "fas fa-robot", color: "text-red-500" },
   { name: "Git", icon: "fab fa-git-alt", color: "text-red-500" },
-  { name: "AWS", icon: "fab fa-aws", color: "text-orange-500" },
-  { name: "MongoDB", icon: "fas fa-database", color: "text-gray-600" },
+  { name: "HTML/CSS", icon: "fab fa-html5", color: "text-orange-500" },
+  { name: "Data Science", icon: "fas fa-microscope", color: "text-indigo-600" },
 ];
 
 function SkillBar({ skill, index }: { skill: typeof technicalSkills[0]; index: number }) {
@@ -88,7 +93,7 @@ export default function SkillsSection() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A comprehensive toolkit of modern technologies and skills I use to bring ideas to life.
+            A comprehensive toolkit spanning data science, AI/ML, web development, and analytics to transform data into actionable insights.
           </p>
         </motion.div>
 
