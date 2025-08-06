@@ -15,12 +15,10 @@ const technologies = [
   { name: "SQL", icon: "fas fa-database", color: "text-blue-500" },
   { name: "MongoDB", icon: "fas fa-leaf", color: "text-green-600" },
   { name: "Power BI", icon: "fas fa-chart-bar", color: "text-yellow-500" },
-  { name: "React", icon: "fab fa-react", color: "text-blue-500" },
   { name: "JavaScript", icon: "fab fa-js-square", color: "text-yellow-600" },
   { name: "Machine Learning", icon: "fas fa-brain", color: "text-purple-600" },
   { name: "Data Analysis", icon: "fas fa-chart-line", color: "text-green-500" },
   { name: "AI/ML", icon: "fas fa-robot", color: "text-red-500" },
-  { name: "Git", icon: "fab fa-git-alt", color: "text-red-500" },
   { name: "HTML/CSS", icon: "fab fa-html5", color: "text-orange-500" },
   { name: "Data Science", icon: "fas fa-microscope", color: "text-indigo-600" },
 ];
@@ -71,11 +69,22 @@ function TechIcon({ tech, index }: { tech: typeof technologies[0]; index: number
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      whileHover={{ scale: 1.1, y: -5 }}
-      className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-primary/5 transition-all duration-300"
+      whileHover={{ 
+        scale: 1.15, 
+        y: -8,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
+      className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-primary/5 transition-all duration-300 cursor-pointer group"
     >
-      <i className={`${tech.icon} text-4xl ${tech.color} mb-2`}></i>
-      <span className="text-sm font-medium text-gray-700">{tech.name}</span>
+      <motion.i 
+        className={`${tech.icon} text-4xl ${tech.color} mb-2 transition-all duration-300`}
+        whileHover={{
+          scale: 1.2,
+          filter: "brightness(1.3) saturate(1.4)",
+          transition: { duration: 0.3, ease: "easeOut" }
+        }}
+      />
+      <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-300">{tech.name}</span>
     </motion.div>
   );
 }
