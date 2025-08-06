@@ -53,29 +53,11 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 w-full z-40 overflow-hidden"
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+        isScrolled ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200/50" : "bg-transparent"
+      }`}
     >
-      {/* Animated Background */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57)",
-            "linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b)",
-            "linear-gradient(45deg, #45b7d1, #96ceb4, #feca57, #ff6b6b, #4ecdc4)",
-            "linear-gradient(45deg, #96ceb4, #feca57, #ff6b6b, #4ecdc4, #45b7d1)",
-            "linear-gradient(45deg, #feca57, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4)",
-            "linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57)"
-          ]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      <div className="relative bg-white/20 backdrop-blur-md border-b border-white/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <motion.div
             initial={{ opacity: 0 }}
@@ -115,14 +97,35 @@ export default function Navigation() {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg relative overflow-hidden bg-white/30 backdrop-blur-md border border-white/40"
-                  style={{
-                    color: activeSection === item.href.replace("#", "") ? "#FFD700" : "#FFFFFF",
-                    textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                    fontWeight: activeSection === item.href.replace("#", "") ? "800" : "600"
-                  }}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg relative ${
+                    activeSection === item.href.replace("#", "")
+                      ? isScrolled 
+                        ? "text-primary bg-primary/15 shadow-sm" 
+                        : "text-yellow-400 bg-yellow-400/20 shadow-lg"
+                      : isScrolled
+                        ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                        : "text-white hover:text-yellow-300 hover:bg-white/10"
+                  }`}
                 >
-                  {item.label}
+                  <motion.span
+                    animate={{
+                      color: [
+                        "#3B82F6", // blue
+                        "#EF4444", // red  
+                        "#10B981", // green
+                        "#F59E0B", // amber
+                        "#8B5CF6", // purple
+                        "#3B82F6"  // back to blue
+                      ]
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  >
+                    {item.label}
+                  </motion.span>
                 </motion.a>
               ))}
             </div>
@@ -138,10 +141,11 @@ export default function Navigation() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
-                className="transition-all duration-300 hover:shadow-md text-white bg-white/30 backdrop-blur-md border border-white/40 hover:bg-white/40"
-                style={{
-                  textShadow: "0 2px 4px rgba(0,0,0,0.3)"
-                }}
+                className={`transition-all duration-300 hover:shadow-md ${
+                  isScrolled
+                    ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                    : "text-white hover:text-yellow-300 hover:bg-white/10"
+                }`}
               >
                 <motion.div
                   animate={{ rotate: isOpen ? 180 : 0 }}
@@ -152,7 +156,6 @@ export default function Navigation() {
               </Button>
             </motion.div>
           </div>
-        </div>
         </div>
       </div>
 
