@@ -164,7 +164,7 @@
 .button-wrapper {
     position: relative;
     overflow: visible;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 
 .sparkle-button {
@@ -172,8 +172,8 @@
     background-size: 400% 400%;
     border: none;
     border-radius: 50px;
-    padding: 18px 40px;
-    font-size: 1.2rem;
+    padding: 12px 24px;
+    font-size: 0.9rem;
     font-weight: bold;
     color: white;
     cursor: pointer;
@@ -182,7 +182,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    animation: gradientShift 3s ease infinite;
+    animation: gradientMove 4s ease infinite;
     z-index: 1;
 }
 
@@ -307,4 +307,11 @@
 
 .sparkle-button:hover::before {
     transform: translateX(100%);
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }

@@ -6,11 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { insertContactSubmissionSchema, type InsertContactSubmission } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import SparkleButton from "./sparkle-button";
 
 const contactInfo = [
   {
@@ -256,11 +256,10 @@ export default function ContactSection() {
                   )}
                 />
 
-                <SparkleButton
+                <Button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  variant="plain"
-                  className="w-full py-3 px-6 rounded-lg font-semibold disabled:opacity-50"
+                  className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50"
                 >
                   {contactMutation.isPending ? (
                     <>
@@ -273,7 +272,7 @@ export default function ContactSection() {
                       Send Message
                     </>
                   )}
-                </SparkleButton>
+                </Button>
               </form>
             </Form>
           </motion.div>

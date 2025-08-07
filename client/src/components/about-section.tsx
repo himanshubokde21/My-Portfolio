@@ -49,16 +49,10 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.div
-            whileHover={{ rotate: 0 }}
-            className="inline-block bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-2xl transform rotate-3 transition-transform duration-500 p-8"
-          >
-            <InteractiveProfile 
-              size={250}
-              className="transform -rotate-3"
-              imageUrl="/profile-avatar.svg"
-            />
-          </motion.div>
+          <InteractiveProfile 
+            size={180}
+            imageUrl="/profile-avatar.svg"
+          />
         </motion.div>
 
         <div className="max-w-4xl mx-auto text-center">
