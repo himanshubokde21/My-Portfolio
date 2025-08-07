@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 dark:bg-black text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export default function Footer() {
             viewport={{ once: true }}
             className="pt-8 border-t border-gray-800"
           >
-            <p className="text-gray-400">&copy; 2024 Alex Chen. All rights reserved.</p>
+            <p className="text-gray-400">&copy; 2024 Himanshu Bokde. All rights reserved.</p>
           </motion.div>
         </motion.div>
       </div>

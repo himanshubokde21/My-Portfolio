@@ -79,7 +79,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -88,8 +88,8 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together.
           </p>
         </motion.div>
@@ -102,7 +102,7 @@ export default function ContactSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Let's Connect</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Let's Connect</h3>
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
@@ -114,14 +114,14 @@ export default function ContactSection() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.02 }}
-                    className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
                   >
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                       <Icon className="text-primary" size={20} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">{info.title}</h4>
-                      <p className="text-gray-600">{info.value}</p>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">{info.title}</h4>
+                      <p className="text-gray-600 dark:text-gray-300">{info.value}</p>
                     </div>
                   </motion.div>
                 );
@@ -136,7 +136,7 @@ export default function ContactSection() {
               viewport={{ once: true }}
               className="mt-8"
             >
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h4>
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
@@ -146,7 +146,7 @@ export default function ContactSection() {
                       href={social.href}
                       whileHover={{ scale: 1.1, y: -5 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${social.color}`}
+                      className={`w-12 h-12 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${social.color}`}
                     >
                       <Icon size={20} />
                     </motion.a>
@@ -166,7 +166,7 @@ export default function ContactSection() {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="bg-white p-8 rounded-2xl shadow-lg space-y-6"
+                className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg space-y-6"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField

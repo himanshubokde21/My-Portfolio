@@ -45,7 +45,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
       whileHover={{ y: -10 }}
-      className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group"
+      className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group"
     >
       <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
         <motion.div
@@ -59,8 +59,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-        <p className="text-gray-600 mb-4">{project.description}</p>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech) => (
             <span
@@ -81,7 +81,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </a>
           <a
             href={project.codeUrl}
-            className="text-gray-600 hover:text-gray-900 transition-colors duration-300 flex items-center gap-1"
+            className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 flex items-center gap-1"
           >
             <Github size={16} />
             Code
@@ -94,7 +94,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export default function PortfolioSection() {
   return (
-    <section id="portfolio" className="py-20 bg-gray-50">
+    <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -103,8 +103,8 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">My Portfolio</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">My Portfolio</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             A collection of projects that showcase my skills in web development, UI/UX design, and problem-solving.
           </p>
         </motion.div>
