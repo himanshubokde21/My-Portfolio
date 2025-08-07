@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SparkleButton from "./sparkle-button";
 import InteractiveProfile from "./interactive-profile";
+import TypingAnimation from "./typing-animation";
 
 export default function HeroSection() {
   const handleScrollToPortfolio = () => {
@@ -71,7 +72,11 @@ export default function HeroSection() {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="text-xl sm:text-2xl md:text-3xl mb-8 h-16 flex items-center justify-center"
           >
-            <span className="typing-text font-light">Data Scientist & AI/ML Engineer</span>
+            <TypingAnimation
+              roles={["data scientist", "AI/ML", "data analyst"]}
+              baseText="And I'm"
+              className="font-light text-white dark:text-gray-200"
+            />
           </motion.div>
 
           <motion.p
