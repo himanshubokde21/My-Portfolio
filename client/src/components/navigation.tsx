@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./theme-toggle";
 
 const navItems = [
   { href: "#home", label: "Home" },
@@ -54,7 +55,9 @@ export default function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200/50" : "bg-transparent"
+        isScrolled 
+          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl border-b border-gray-200/50 dark:border-gray-700/50" 
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,8 +81,8 @@ export default function Navigation() {
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.href}
@@ -103,7 +106,7 @@ export default function Navigation() {
                         ? "text-primary bg-primary/15 shadow-sm" 
                         : "text-yellow-400 bg-yellow-400/20 shadow-lg"
                       : isScrolled
-                        ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                        ? "text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                         : "text-white hover:text-yellow-300 hover:bg-white/10"
                   }`}
                 >
@@ -129,10 +132,12 @@ export default function Navigation() {
                 </motion.a>
               ))}
             </div>
+            <ThemeToggle />
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button and theme toggle */}
+          <div className="md:hidden flex items-center space-x-3">
+            <ThemeToggle />
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -143,7 +148,7 @@ export default function Navigation() {
                 onClick={() => setIsOpen(!isOpen)}
                 className={`transition-all duration-300 hover:shadow-md ${
                   isScrolled
-                    ? "text-gray-700 hover:text-primary hover:bg-primary/10"
+                    ? "text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                     : "text-white hover:text-yellow-300 hover:bg-white/10"
                 }`}
               >
@@ -167,7 +172,7 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="md:hidden fixed top-16 right-0 w-64 h-full bg-white shadow-xl"
+            className="md:hidden fixed top-16 right-0 w-64 h-full bg-white dark:bg-gray-900 shadow-xl border-l border-gray-200 dark:border-gray-700"
           >
             <div className="px-2 pt-2 pb-3 space-y-2">
               {navItems.map((item, index) => (
@@ -190,7 +195,7 @@ export default function Navigation() {
                   className={`block px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:shadow-md ${
                     activeSection === item.href.replace("#", "")
                       ? "text-primary bg-primary/15 shadow-sm border-l-4 border-primary"
-                      : "text-gray-700 hover:text-primary hover:bg-primary/10"
+                      : "text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                   }`}
                 >
                   {item.label}

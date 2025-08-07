@@ -32,7 +32,7 @@ export default function HeroSection() {
         className="absolute top-1/3 right-10 w-12 h-12 bg-white/10 rounded-full"
       />
 
-      <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 text-center text-white dark:text-gray-100 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}

@@ -13,8 +13,8 @@
   --card-foreground: hsl(20, 14.3%, 4.1%);
   --border: hsl(20, 5.9%, 90%);
   --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(249, 92%, 67%);
-  --primary-foreground: hsl(211, 100%, 99%);
+  --primary: hsl(43, 96%, 56%);
+  --primary-foreground: hsl(26, 83%, 14%);
   --secondary: hsl(268, 83%, 67%);
   --secondary-foreground: hsl(24, 9.8%, 10%);
   --accent: hsl(33, 100%, 50%);
@@ -36,8 +36,8 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 3.7%, 15.9%);
   --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(249, 92%, 67%);
-  --primary-foreground: hsl(211, 100%, 99%);
+  --primary: hsl(43, 96%, 56%);
+  --primary-foreground: hsl(26, 83%, 14%);
   --secondary: hsl(268, 83%, 67%);
   --secondary-foreground: hsl(0, 0%, 98%);
   --accent: hsl(240, 3.7%, 15.9%);
@@ -69,6 +69,12 @@
   animation: gradientShift 15s ease infinite;
 }
 
+.dark .gradient-bg {
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #533a7b, #4a4a4a, #2c3e50, #34495e);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -82,6 +88,10 @@
 
 ::-webkit-scrollbar-track {
   background: hsl(60, 4.8%, 95.9%);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: hsl(240, 3.7%, 15.9%);
 }
 
 ::-webkit-scrollbar-thumb {
