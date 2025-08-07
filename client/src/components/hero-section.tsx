@@ -12,14 +12,14 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div className="absolute inset-0 bg-black/20"></div>
       
       {/* Floating elements */}
       <motion.div
         animate={{ y: [-20, 20, -20] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full"
+        className="absolute top-32 left-10 w-20 h-20 bg-white/10 rounded-full"
       />
       <motion.div
         animate={{ y: [20, -20, 20] }}
