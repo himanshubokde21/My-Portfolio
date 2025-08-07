@@ -92,18 +92,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
           >
             <SparkleButton
               onClick={handleScrollToPortfolio}
-              className="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100"
+              variant="primary"
             >
               View My Work
             </SparkleButton>
             <SparkleButton
               onClick={handleScrollToContact}
-              variant="outline"
-              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary"
+              variant="secondary"
             >
               Get In Touch
             </SparkleButton>

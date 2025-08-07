@@ -259,7 +259,8 @@ export default function ContactSection() {
                 <SparkleButton
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50"
+                  variant="plain"
+                  className="w-full py-3 px-6 rounded-lg font-semibold disabled:opacity-50"
                 >
                   {contactMutation.isPending ? (
                     <>

@@ -1,0 +1,417 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.button-wrapper {
+    margin: 3rem 0;
+}
+
+/* Main sparkle button styles */
+.sparkle-button {
+    position: relative;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    background-size: 400% 400%;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    overflow: visible;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: gradientShift 3s ease infinite;
+    z-index: 1;
+}
+
+.button-wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+/* Gradient animation for button background */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.sparkle-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    animation-duration: 1.5s;
+}
+
+.sparkle-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.sparkle-button:hover .button-text {
+    transform: scale(1.05);
+}
+
+/* Sparkle elements - Star shapes */
+.sparkle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: center;
+    z-index: 1;
+}
+
+/* Create star shape using pseudo-elements */
+.sparkle::before,
+.sparkle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 12px;
+    background: white;
+    border-radius: 1.5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.sparkle::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sparkle::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Individual sparkle positioning and animations */
+.sparkle-1 {
+    top: 10%;
+    left: 20%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 20%;
+    right: 15%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 0.3s;
+}
+
+.sparkle-3 {
+    bottom: 15%;
+    left: 15%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 0.6s;
+}
+
+.sparkle-4 {
+    bottom: 10%;
+    right: 25%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 0.9s;
+}
+
+.sparkle-5 {
+    top: 50%;
+    left: 5%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 1.2s;
+}
+
+.sparkle-6 {
+    top: 50%;
+    right: 5%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 1.5s;
+}
+
+.sparkle-7 {
+    top: 5%;
+    left: 50%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 1.8s;
+}
+
+.sparkle-8 {
+    bottom: 5%;
+    left: 50%;
+    animation: sparkleAnimation 2s infinite;
+    animation-delay: 2.1s;
+}
+
+/* Sparkle animation keyframes */
+@keyframes sparkleAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(540deg);
+    }
+}
+
+/* Click animation for stars jumping out */
+@keyframes starJumpOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate(0, 0);
+        z-index: 10;
+    }
+    25% {
+        opacity: 1;
+        transform: scale(1.2) translate(calc(var(--jump-x, 0) * 0.3), calc(var(--jump-y, 0) * 0.3));
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5) translate(calc(var(--jump-x, 0) * 0.7), calc(var(--jump-y, 0) * 0.7));
+    }
+    75% {
+        opacity: 0.8;
+        transform: scale(1.8) translate(var(--jump-x, 0), var(--jump-y, 0));
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translate(calc(var(--jump-x, 0) * 1.5), calc(var(--jump-y, 0) * 1.5));
+        z-index: 10;
+    }
+}
+
+/* Enhanced sparkle effects on hover */
+.sparkle-button:hover .sparkle {
+    animation-duration: 1s;
+}
+
+/* Click effects - stars jump out on click */
+.sparkle-button:active .sparkle-1 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    --jump-x: -60px;
+    --jump-y: -80px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-2 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.1s;
+    --jump-x: 60px;
+    --jump-y: -70px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-3 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.2s;
+    --jump-x: -50px;
+    --jump-y: 70px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-4 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.15s;
+    --jump-x: 70px;
+    --jump-y: 60px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-5 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.25s;
+    --jump-x: -90px;
+    --jump-y: 0px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-6 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+    --jump-x: 90px;
+    --jump-y: 0px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-7 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.05s;
+    --jump-x: 0px;
+    --jump-y: -100px;
+    z-index: 10;
+}
+
+.sparkle-button:active .sparkle-8 {
+    animation: starJumpOut 1.2s ease-out forwards;
+    animation-delay: 0.35s;
+    --jump-x: 0px;
+    --jump-y: 100px;
+    z-index: 10;
+}
+
+/* Alternative button styles */
+.sparkle-button-secondary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    background-size: 200% 200%;
+}
+
+.sparkle-button-success {
+    background: linear-gradient(45deg, #56ab2f, #a8e6cf, #56ab2f);
+    background-size: 300% 300%;
+}
+
+/* Demo section styles */
+.demo-section {
+    margin-top: 4rem;
+}
+
+.demo-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.button-group {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button-group .sparkle-button {
+    font-size: 1rem;
+    padding: 15px 30px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .sparkle-button {
+        font-size: 1rem;
+        padding: 15px 30px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .button-group .sparkle-button {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .sparkle-button {
+        font-size: 0.9rem;
+        padding: 12px 25px;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+}
+
+/* Additional sparkle effects for more visual appeal */
+.sparkle-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.sparkle-button:hover::before {
+    transform: translateX(100%);
+}
+
+/* Accessibility improvements */
+.sparkle-button:focus {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+.sparkle-button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Smooth performance optimizations */
+.sparkle-button,
+.sparkle {
+    will-change: transform, opacity;
+}
+
+/* Print styles */
+@media print {
+    .sparkle-button {
+        background: #333 !important;
+        color: white !important;
+        box-shadow: none !important;
+    }
+    
+    .sparkle {
+        display: none !important;
+    }
+}

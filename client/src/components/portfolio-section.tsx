@@ -122,7 +122,7 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <SparkleButton className="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary/90">
+          <SparkleButton variant="success">
             View All Projects
           </SparkleButton>
         </motion.div>

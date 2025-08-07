@@ -159,3 +159,152 @@
 .mobile-menu.open {
   transform: translateX(0);
 }
+
+/* Sparkle Button Styles */
+.button-wrapper {
+    position: relative;
+    overflow: visible;
+    margin: 1rem;
+}
+
+.sparkle-button {
+    position: relative;
+    background-size: 400% 400%;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    overflow: visible;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: gradientShift 3s ease infinite;
+    z-index: 1;
+}
+
+.sparkle-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    animation-duration: 1.5s;
+}
+
+.sparkle-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.sparkle-button:hover .button-text {
+    transform: scale(1.05);
+}
+
+/* Plain button for forms */
+.plain-button {
+    background: hsl(var(--primary)) !important;
+    animation: none !important;
+}
+
+.plain-button:hover {
+    background: hsl(var(--primary)) !important;
+    opacity: 0.9;
+}
+
+/* Sparkle elements */
+.sparkle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: center;
+    z-index: 1;
+}
+
+.sparkle::before,
+.sparkle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 12px;
+    background: white;
+    border-radius: 1.5px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.sparkle::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sparkle::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Sparkle positioning */
+.sparkle-1 { top: 10%; left: 20%; animation: sparkleAnimation 2s infinite; animation-delay: 0s; }
+.sparkle-2 { top: 20%; right: 15%; animation: sparkleAnimation 2s infinite; animation-delay: 0.3s; }
+.sparkle-3 { bottom: 15%; left: 15%; animation: sparkleAnimation 2s infinite; animation-delay: 0.6s; }
+.sparkle-4 { bottom: 10%; right: 25%; animation: sparkleAnimation 2s infinite; animation-delay: 0.9s; }
+.sparkle-5 { top: 50%; left: 5%; animation: sparkleAnimation 2s infinite; animation-delay: 1.2s; }
+.sparkle-6 { top: 50%; right: 5%; animation: sparkleAnimation 2s infinite; animation-delay: 1.5s; }
+.sparkle-7 { top: 5%; left: 50%; animation: sparkleAnimation 2s infinite; animation-delay: 1.8s; }
+.sparkle-8 { bottom: 5%; left: 50%; animation: sparkleAnimation 2s infinite; animation-delay: 2.1s; }
+
+@keyframes sparkleAnimation {
+    0% { opacity: 0; transform: scale(0) rotate(0deg); }
+    20% { opacity: 1; transform: scale(1) rotate(180deg); }
+    80% { opacity: 1; transform: scale(1) rotate(360deg); }
+    100% { opacity: 0; transform: scale(0) rotate(540deg); }
+}
+
+/* Enhanced sparkle effects on hover */
+.sparkle-button:hover .sparkle {
+    animation-duration: 1s;
+}
+
+/* Click effects */
+@keyframes starJumpOut {
+    0% { opacity: 1; transform: scale(1) translate(0, 0); z-index: 10; }
+    25% { opacity: 1; transform: scale(1.2) translate(calc(var(--jump-x, 0) * 0.3), calc(var(--jump-y, 0) * 0.3)); }
+    50% { opacity: 1; transform: scale(1.5) translate(calc(var(--jump-x, 0) * 0.7), calc(var(--jump-y, 0) * 0.7)); }
+    75% { opacity: 0.8; transform: scale(1.8) translate(var(--jump-x, 0), var(--jump-y, 0)); }
+    100% { opacity: 0; transform: scale(0.3) translate(calc(var(--jump-x, 0) * 1.5), calc(var(--jump-y, 0) * 1.5)); z-index: 10; }
+}
+
+.sparkle-button.clicked .sparkle-1 { animation: starJumpOut 1.2s ease-out forwards; --jump-x: -60px; --jump-y: -80px; }
+.sparkle-button.clicked .sparkle-2 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.1s; --jump-x: 60px; --jump-y: -70px; }
+.sparkle-button.clicked .sparkle-3 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.2s; --jump-x: -50px; --jump-y: 70px; }
+.sparkle-button.clicked .sparkle-4 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.15s; --jump-x: 70px; --jump-y: 60px; }
+.sparkle-button.clicked .sparkle-5 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.25s; --jump-x: -90px; --jump-y: 0px; }
+.sparkle-button.clicked .sparkle-6 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.3s; --jump-x: 90px; --jump-y: 0px; }
+.sparkle-button.clicked .sparkle-7 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.05s; --jump-x: 0px; --jump-y: -100px; }
+.sparkle-button.clicked .sparkle-8 { animation: starJumpOut 1.2s ease-out forwards; animation-delay: 0.35s; --jump-x: 0px; --jump-y: 100px; }
+
+/* Shimmer effect */
+.sparkle-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.sparkle-button:hover::before {
+    transform: translateX(100%);
+}
