@@ -16,17 +16,17 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "alex.chen@example.com",
+    value: "bokdehimanshu802@gmail.com",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+1 (555) 123-4567",
+    value: "+91 9284310243",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "San Francisco, CA",
+    value: "Nagpur, Maharashtra, India",
   },
 ];
 
