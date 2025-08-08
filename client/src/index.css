@@ -62,22 +62,24 @@
   }
 }
 
-/* Custom gradient background */
+/* Custom gradient background - Original animated version */
 .gradient-bg {
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #667eea, #764ba2);
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientMove 8s ease infinite;
 }
 
 .dark .gradient-bg {
   background: linear-gradient(-45deg, #1a1a2e, #16213e, #533a7b, #4a4a4a, #2c3e50, #34495e);
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientMove 8s ease infinite;
 }
 
-@keyframes gradientShift {
+@keyframes gradientMove {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 50% 100%; }
   100% { background-position: 0% 50%; }
 }
 
@@ -182,7 +184,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    animation: gradientMove 4s ease infinite;
+    animation: gradientBackground 4s ease infinite;
     z-index: 1;
 }
 
@@ -309,9 +311,11 @@
     transform: translateX(100%);
 }
 
-/* Gradient animation keyframes */
-@keyframes gradientMove {
+/* Enhanced gradient animation for moving background */
+@keyframes gradientBackground {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 50% 100%; }
     100% { background-position: 0% 50%; }
 }
