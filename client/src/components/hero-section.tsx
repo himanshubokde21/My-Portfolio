@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import SparkleButton from "./sparkle-button";
 import InteractiveProfile from "./interactive-profile";
 import TypingAnimation from "./typing-animation";
-import profileImage from "@assets/profile-image-1_1754575683941.png";
+import profileImage from "@assets/profile-image-1.png";
 
 export default function HeroSection() {
   const handleScrollToPortfolio = () => {

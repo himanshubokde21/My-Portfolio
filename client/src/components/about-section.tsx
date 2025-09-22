@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import InteractiveProfile from "./interactive-profile";
-import profileImage from "@assets/profile-image-1_1754575683941.png";
+import profileImage2 from "@assets/profile-image-2.png";
 
 const stats = [
   { target: 50, label: "Projects Completed" },
@@ -52,7 +52,7 @@ export default function AboutSection() {
         >
           <InteractiveProfile 
             size={180}
-            imageUrl={profileImage}
+            imageUrl={profileImage2}
           />
         </motion.div>
 

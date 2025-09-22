@@ -5,21 +5,27 @@ const technicalSkills = [
   { name: "Data Science & Analysis", percentage: 92 },
   { name: "Python / Machine Learning", percentage: 90 },
   { name: "SQL / Database Management", percentage: 88 },
-  { name: "Web Development (Frontend)", percentage: 85 },
+  { name: "Web Development", percentage: 85 },
   { name: "Power BI / Data Visualization", percentage: 80 },
 
 ];
 
 const technologies = [
   { name: "Python", icon: "fab fa-python", color: "text-blue-600" },
-  { name: "SQL", icon: "fas fa-database", color: "text-blue-500" },
-  { name: "MongoDB", icon: "fas fa-leaf", color: "text-green-600" },
-  { name: "Power BI", icon: "fas fa-chart-bar", color: "text-yellow-500" },
+
+  // Replace SQL + MongoDB with a single "Database" using the same SQL (database) icon
+  { name: "Database", icon: "fas fa-database", color: "text-blue-500" },
+
+  // Rename Power BI to Power BI / Tableau
+  { name: "Power BI / Tableau", icon: "fas fa-chart-bar", color: "text-yellow-500" },
 
   { name: "Machine Learning", icon: "fas fa-brain", color: "text-purple-600" },
   { name: "Data Analysis", icon: "fas fa-chart-line", color: "text-green-500" },
   { name: "AI/ML", icon: "fas fa-robot", color: "text-red-500" },
-  { name: "HTML/CSS", icon: "fab fa-html5", color: "text-orange-500" },
+
+  // Replace HTML/CSS with Web Development and choose a matching FA solid icon
+  { name: "Web Development", icon: "fas fa-code", color: "text-orange-500" },
+
   { name: "Data Science", icon: "fas fa-microscope", color: "text-indigo-600" },
 ];
 
