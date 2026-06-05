@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
-import InteractiveProfile from "./interactive-profile";
+import InteractiveProfile from "../common/interactive-profile";
 import profileImage2 from "@assets/profile-image-2.png";
 
 const stats = [

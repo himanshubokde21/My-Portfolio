@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import SparkleButton from "./sparkle-button";
-import InteractiveProfile from "./interactive-profile";
-import TypingAnimation from "./typing-animation";
+import SparkleButton from "../common/sparkle-button";
+import InteractiveProfile from "../common/interactive-profile";
+import TypingAnimation from "../common/typing-animation";
 import profileImage from "@assets/profile-image-1.png";
 
 export default function HeroSection() {

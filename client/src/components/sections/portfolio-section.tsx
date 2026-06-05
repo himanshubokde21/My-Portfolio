@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ShoppingCart, CheckSquare, BarChart3, ExternalLink, Github } from "lucide-react";
-import SparkleButton from "./sparkle-button";
+import SparkleButton from "../common/sparkle-button";
 
 const projects = [
   {
