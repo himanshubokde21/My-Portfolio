@@ -1,41 +1,76 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Dribbble, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Send, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { insertContactSubmissionSchema, type InsertContactSubmission } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
-import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "bokdehimanshu802@gmail.com",
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    value: "+91 9284310243",
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    value: "Nagpur, Maharashtra, India",
-  },
+  { icon: Mail, title: "Email", value: "bokdehimanshu802@gmail.com", accent: "#7c3aed" },
+  { icon: Phone, title: "Phone", value: "+91 9284310243", accent: "#2563eb" },
+  { icon: MapPin, title: "Location", value: "Nagpur, Maharashtra, India", accent: "#0891b2" },
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: "#", color: "text-primary" },
-  { icon: Github, href: "#", color: "text-gray-700" },
-  { icon: Twitter, href: "#", color: "text-blue-400" },
-  { icon: Dribbble, href: "#", color: "text-pink-500" },
+  { icon: Linkedin, href: "#", label: "LinkedIn", color: "#2563eb" },
+  { icon: Github, href: "#", label: "GitHub", color: "#a78bfa" },
+  { icon: Twitter, href: "#", label: "Twitter", color: "#38bdf8" },
 ];
+
+function ContactCodeBlock() {
+  return (
+    <div className="mac-window w-full">
+      <div className="mac-titlebar">
+        <div className="mac-dot mac-dot-red" />
+        <div className="mac-dot mac-dot-yellow" />
+        <div className="mac-dot mac-dot-green" />
+        <span className="ml-3 text-xs text-slate-500 font-mono">contact.ts</span>
+      </div>
+      <div className="mac-body">
+        <div className="syn-comment mb-2">// Let's build something great</div>
+        <div className="mb-1">
+          <span className="syn-keyword">const </span>
+          <span className="syn-var">contact</span>
+          <span className="syn-operator"> = </span>
+          <span className="syn-bracket">{"{"}</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">email</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-string">"bokdehimanshu802@gmail.com"</span>
+          <span className="syn-bracket">,</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">location</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-string">"Nagpur, India"</span>
+          <span className="syn-bracket">,</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">response_time</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-string">"within 24h"</span>
+          <span className="syn-bracket">,</span>
+        </div>
+        <div className="ml-4">
+          <span className="syn-type">open_to</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-bracket">[</span>
+          <span className="syn-string">"freelance"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"fulltime"</span>
+          <span className="syn-bracket">]</span>
+        </div>
+        <div><span className="syn-bracket">{"}"}</span></div>
+      </div>
+    </div>
+  );
+}
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -59,15 +94,15 @@ export default function ContactSection() {
     },
     onSuccess: () => {
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
       });
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/contact-submissions"] });
     },
     onError: (error: any) => {
       toast({
-        title: "Error sending message",
+        title: "Failed to send",
         description: error.message || "Something went wrong. Please try again.",
         variant: "destructive",
       });
@@ -79,8 +114,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 midnight-bg relative overflow-hidden">
+      <div className="particle w-96 h-96 bottom-[-8rem] right-[-6rem] bg-violet-600/10 blur-3xl" />
+      <div className="particle w-64 h-64 top-20 left-[-4rem] bg-blue-500/8 blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,97 +126,112 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing together.
+          <div className="section-label mb-3">04. contact</div>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <span className="gradient-text-purple">Get In Touch</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Have a project in mind or want to collaborate? I'd love to hear from you.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Left: contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="flex flex-col gap-6"
           >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Let's Connect</h3>
-            <div className="space-y-6">
+            <h3 className="text-xl font-bold text-slate-200 font-mono">
+              <span className="syn-keyword">async function</span>{" "}
+              <span className="syn-function">reachOut</span>
+              <span className="syn-bracket">()</span>{" "}
+              <span className="syn-bracket">{"{"}</span>
+            </h3>
+
+            <div className="space-y-4">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
                   <motion.div
                     key={info.title}
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                    whileHover={{ x: 4 }}
+                    className="glass-card glass-card-hover flex items-center gap-4 p-4 rounded-xl"
                   >
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Icon className="text-primary" size={20} />
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: `${info.accent}20` }}
+                    >
+                      <Icon size={18} style={{ color: info.accent }} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white">{info.title}</h4>
-                      <p className="text-gray-600 dark:text-gray-300">{info.value}</p>
+                      <div className="text-xs text-slate-500 font-mono mb-0.5">{info.title}</div>
+                      <div className="text-slate-200 text-sm">{info.value}</div>
                     </div>
                   </motion.div>
                 );
               })}
             </div>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-8"
-            >
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h4>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => {
+            <div className="syn-bracket font-mono text-slate-500">{"}"}</div>
+
+            {/* Socials */}
+            <div>
+              <p className="text-slate-500 text-sm font-mono mb-3">
+                <span className="syn-comment">// find me online</span>
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
                     <motion.a
-                      key={index}
+                      key={social.label}
                       href={social.href}
-                      whileHover={{ scale: 1.1, y: -5 }}
+                      whileHover={{ scale: 1.1, y: -3 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`w-12 h-12 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${social.color}`}
+                      className="w-11 h-11 glass-card rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-100 transition-all duration-300"
+                      style={{ "--hover-color": social.color } as any}
                     >
-                      <Icon size={20} />
+                      <Icon size={18} />
                     </motion.a>
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
+
+            <ContactCodeBlock />
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right: form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg space-y-6"
+                className="glass-card rounded-2xl p-8 space-y-5"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <FormField
                     control={form.control}
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel className="text-slate-400 text-xs font-mono">first_name</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="transition-all duration-300 focus:transform focus:scale-[1.02]"
+                            className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
+                            placeholder="Himanshu"
                           />
                         </FormControl>
                         <FormMessage />
@@ -190,11 +243,12 @@ export default function ContactSection() {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel className="text-slate-400 text-xs font-mono">last_name</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
-                            className="transition-all duration-300 focus:transform focus:scale-[1.02]"
+                            className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
+                            placeholder="Bokde"
                           />
                         </FormControl>
                         <FormMessage />
@@ -208,12 +262,13 @@ export default function ContactSection() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email Address</FormLabel>
+                      <FormLabel className="text-slate-400 text-xs font-mono">email_address</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
-                          className="transition-all duration-300 focus:transform focus:scale-[1.02]"
+                          className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
+                          placeholder="you@example.com"
                         />
                       </FormControl>
                       <FormMessage />
@@ -226,11 +281,12 @@ export default function ContactSection() {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Subject</FormLabel>
+                      <FormLabel className="text-slate-400 text-xs font-mono">subject</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          className="transition-all duration-300 focus:transform focus:scale-[1.02]"
+                          className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
+                          placeholder="Project collaboration"
                         />
                       </FormControl>
                       <FormMessage />
@@ -243,12 +299,13 @@ export default function ContactSection() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message</FormLabel>
+                      <FormLabel className="text-slate-400 text-xs font-mono">message</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
-                          rows={6}
-                          className="transition-all duration-300 focus:transform focus:scale-[1.02] resize-none"
+                          rows={5}
+                          className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all resize-none"
+                          placeholder="Tell me about your project..."
                         />
                       </FormControl>
                       <FormMessage />
@@ -256,23 +313,23 @@ export default function ContactSection() {
                   )}
                 />
 
-                <Button
+                <button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50"
+                  className="btn-midnight w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {contactMutation.isPending ? (
                     <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <Loader2 className="h-4 w-4 animate-spin" />
                       Sending...
                     </>
                   ) : (
                     <>
-                      <Mail className="mr-2 h-4 w-4" />
+                      <Send size={15} />
                       Send Message
                     </>
                   )}
-                </Button>
+                </button>
               </form>
             </Form>
           </motion.div>

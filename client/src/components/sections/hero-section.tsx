@@ -1,113 +1,194 @@
 import { motion } from "framer-motion";
-import SparkleButton from "../common/sparkle-button";
 import InteractiveProfile from "../common/interactive-profile";
 import TypingAnimation from "../common/typing-animation";
 import profileImage from "@assets/profile-image-1.png";
+import { ArrowDown, Github, Linkedin, Download } from "lucide-react";
+
+function MacCodeBlock() {
+  return (
+    <div className="mac-window w-full">
+      <div className="mac-titlebar">
+        <div className="mac-dot mac-dot-red" />
+        <div className="mac-dot mac-dot-yellow" />
+        <div className="mac-dot mac-dot-green" />
+        <span className="ml-3 text-xs text-slate-500 font-mono">himanshu.py</span>
+      </div>
+      <div className="mac-body text-xs">
+        <div className="mb-1">
+          <span className="syn-keyword">from</span>
+          <span className="syn-function"> ai_universe </span>
+          <span className="syn-keyword">import</span>
+          <span className="syn-var"> Himanshu</span>
+        </div>
+        <div className="mb-2">
+          <span className="syn-comment"># Data Scientist & AI/ML Engineer</span>
+        </div>
+        <div className="mb-1">
+          <span className="syn-var">me</span>
+          <span className="syn-operator"> = </span>
+          <span className="syn-function">Himanshu</span>
+          <span className="syn-bracket">(</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">skills</span>
+          <span className="syn-operator">=</span>
+          <span className="syn-bracket">[</span>
+          <span className="syn-string">"ML"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"AI"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"Python"</span>
+          <span className="syn-bracket">],</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">open_to_work</span>
+          <span className="syn-operator">=</span>
+          <span className="syn-keyword">True</span>
+        </div>
+        <div className="mb-2">
+          <span className="syn-bracket">)</span>
+        </div>
+        <div>
+          <span className="syn-function">print</span>
+          <span className="syn-bracket">(</span>
+          <span className="syn-var">me</span>
+          <span className="syn-operator">.</span>
+          <span className="syn-function">build_future</span>
+          <span className="syn-bracket">())</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function HeroSection() {
   const handleScrollToPortfolio = () => {
     document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
   };
-
   const handleScrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="home" className="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-black/20"></div>
-      
-      {/* Floating elements */}
-      <motion.div
-        animate={{ y: [-20, 20, -20] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-32 left-10 w-20 h-20 bg-white/10 rounded-full"
-      />
-      <motion.div
-        animate={{ y: [20, -20, 20] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-32 right-20 w-16 h-16 bg-white/10 rounded-full"
-      />
-      <motion.div
-        animate={{ y: [-15, 15, -15] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute top-1/3 right-10 w-12 h-12 bg-white/10 rounded-full"
-      />
+    <section id="home" className="midnight-bg min-h-screen relative overflow-hidden">
+      {/* Background orbs */}
+      <div className="particle w-96 h-96 top-[-8rem] left-[-8rem] bg-violet-600/10 blur-3xl animate-float-orb" />
+      <div className="particle w-80 h-80 bottom-[-6rem] right-[-6rem] bg-blue-500/10 blur-3xl animate-float-orb" style={{ animationDelay: "3s" }} />
 
-      <div className="relative z-10 text-center text-white dark:text-gray-100 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+      {/* Grid overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: "linear-gradient(rgba(124,58,237,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.8) 1px, transparent 1px)",
+        backgroundSize: "60px 60px"
+      }} />
+
+      {/* Main content — two column on desktop */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-10 min-h-screen py-20">
+
+        {/* Left: text content */}
+        <div className="flex-1 text-center lg:text-left max-w-xl">
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-            className="mb-8"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="mx-auto mb-6"
-            >
-              <InteractiveProfile 
-                size={200}
-                imageUrl={profileImage}
+            <div className="section-label mb-3">
+              {"<"} Available for work {"/>"}
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl font-bold mb-3 leading-tight">
+              Hi, I'm{" "}
+              <span className="gradient-text-purple text-glow-purple">
+                Himanshu Bokde
+              </span>
+            </h1>
+
+            <div className="text-xl mb-4 h-10 flex items-center justify-center lg:justify-start">
+              <TypingAnimation
+                roles={["Data Scientist", "AI/ML Engineer", "Data Analyst"]}
+                baseText="I'm a"
+                className="text-slate-300 font-mono"
               />
-            </motion.div>
+            </div>
+
+            <p className="text-slate-400 text-base mb-7 leading-relaxed">
+              I transform complex data into actionable insights and build intelligent
+              solutions using cutting-edge AI/ML technologies.
+            </p>
+
+            <div className="flex flex-row gap-3 justify-center lg:justify-start mb-6">
+              <button
+                onClick={handleScrollToPortfolio}
+                className="btn-midnight flex items-center gap-2 text-sm"
+              >
+                View My Work
+                <ArrowDown size={14} />
+              </button>
+              <button
+                onClick={handleScrollToContact}
+                className="btn-midnight-outline flex items-center gap-2 text-sm"
+              >
+                Get In Touch
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4 justify-center lg:justify-start">
+              <a
+                href="#"
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-400 hover:text-violet-400 transition-all duration-300"
+              >
+                <Github size={17} />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-slate-400 hover:text-blue-400 transition-all duration-300"
+              >
+                <Linkedin size={17} />
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 text-sm text-slate-400 hover:text-violet-400 transition-colors duration-300 border-l border-white/10 pl-4"
+              >
+                <Download size={13} />
+                Resume
+              </a>
+            </div>
           </motion.div>
+        </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
-          >
-            Hi, I'm <span className="bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">Himanshu Bokde</span>
-          </motion.h1>
-
+        {/* Right: profile + code block stacked */}
+        <div className="flex-1 flex flex-col items-center gap-5 max-w-sm w-full">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-xl sm:text-2xl md:text-3xl mb-8 h-16 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="relative"
           >
-            <TypingAnimation
-              roles={["data scientist", "AI/ML", "data analyst"]}
-              baseText="And I'm"
-              className="font-light text-white dark:text-gray-200"
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-500 to-blue-500 blur-2xl opacity-25 scale-110" />
+            <InteractiveProfile
+              size={170}
+              imageUrl={profileImage}
             />
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto opacity-90"
-          >
-            I transform complex data into actionable insights and build intelligent solutions using AI/ML technologies.
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+            transition={{ delay: 0.4, duration: 0.7 }}
+            className="w-full"
           >
-            <SparkleButton
-              onClick={handleScrollToPortfolio}
-              variant="primary"
-            >
-              View My Work
-            </SparkleButton>
-            <SparkleButton
-              onClick={handleScrollToContact}
-              variant="secondary"
-            >
-              Get In Touch
-            </SparkleButton>
+            <MacCodeBlock />
           </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-600">
+        <span className="text-xs font-mono">scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowDown size={14} />
         </motion.div>
       </div>
     </section>
