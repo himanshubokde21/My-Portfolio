@@ -22,6 +22,7 @@ const techCategories = [
     items: [
       { name: "Python", icon: "fab fa-python", color: "#3b82f6" },
       { name: "JavaScript", icon: "fab fa-js", color: "#fbbf24" },
+      { name: "TypeScript", imgUrl: "https://cdn.simpleicons.org/typescript/3178c6", color: "#3178c6" },
     ],
   },
   {
@@ -31,7 +32,7 @@ const techCategories = [
       { name: "React.js", icon: "fab fa-react", color: "#61dafb" },
       { name: "HTML5", icon: "fab fa-html5", color: "#f97316" },
       { name: "CSS3", icon: "fab fa-css3-alt", color: "#38bdf8" },
-      { name: "Tailwind", icon: "fas fa-wind", color: "#06b6d4" },
+      { name: "Tailwind", imgUrl: "https://cdn.simpleicons.org/tailwindcss/06b6d4", color: "#06b6d4" },
     ],
   },
   {
@@ -40,26 +41,26 @@ const techCategories = [
     items: [
       { name: "Node.js", icon: "fab fa-node-js", color: "#4ade80" },
       { name: "Express", icon: "fas fa-server", color: "#94a3b8" },
-      { name: "Fastify", icon: "fas fa-bolt", color: "#facc15" },
-      { name: "Django", icon: "fas fa-layer-group", color: "#22d3ee" },
+      { name: "Fastify", imgUrl: "https://cdn.simpleicons.org/fastify/ffffff", color: "#e2e8f0" },
+      { name: "Django", imgUrl: "https://cdn.simpleicons.org/django/22d3ee", color: "#22d3ee" },
     ],
   },
   {
     label: "Databases",
     color: "#fb923c",
     items: [
-      { name: "PostgreSQL", icon: "fas fa-database", color: "#60a5fa" },
-      { name: "MongoDB", icon: "fas fa-leaf", color: "#4ade80" },
-      { name: "MySQL", icon: "fas fa-table", color: "#f97316" },
+      { name: "PostgreSQL", imgUrl: "https://cdn.simpleicons.org/postgresql/60a5fa", color: "#60a5fa" },
+      { name: "MongoDB", imgUrl: "https://cdn.simpleicons.org/mongodb/4ade80", color: "#4ade80" },
+      { name: "MySQL", imgUrl: "https://cdn.simpleicons.org/mysql/f97316", color: "#f97316" },
     ],
   },
   {
     label: "ORM & Validation",
     color: "#c084fc",
     items: [
-      { name: "Drizzle ORM", icon: "fas fa-project-diagram", color: "#a78bfa" },
+      { name: "Drizzle ORM", imgUrl: "https://cdn.simpleicons.org/drizzle/C5F74F", color: "#C5F74F" },
       { name: "Mongoose", icon: "fas fa-plug", color: "#34d399" },
-      { name: "Zod", icon: "fas fa-shield-halved", color: "#f472b6" },
+      { name: "Zod", imgUrl: "https://cdn.simpleicons.org/zod/3068b7", color: "#6ea4f5" },
       { name: "Luna Modeler", icon: "fas fa-diagram-project", color: "#818cf8" },
     ],
   },
@@ -67,11 +68,12 @@ const techCategories = [
     label: "DevOps & Deploy",
     color: "#38bdf8",
     items: [
-      { name: "Git / GitHub", icon: "fab fa-git-alt", color: "#f97316" },
-      { name: "Vercel", icon: "fas fa-triangle", color: "#e2e8f0" },
-      { name: "Railway", icon: "fas fa-train", color: "#7c3aed" },
-      { name: "Firebase", icon: "fas fa-fire", color: "#fb923c" },
-      { name: "Netlify", icon: "fas fa-cloud-arrow-up", color: "#22d3ee" },
+      { name: "Git", icon: "fab fa-git-alt", color: "#f97316" },
+      { name: "GitHub", icon: "fab fa-github", color: "#e2e8f0" },
+      { name: "Vercel", imgUrl: "https://cdn.simpleicons.org/vercel/ffffff", color: "#e2e8f0" },
+      { name: "Railway", imgUrl: "https://cdn.simpleicons.org/railway/7c3aed", color: "#7c3aed" },
+      { name: "Firebase", imgUrl: "https://cdn.simpleicons.org/firebase/fb923c", color: "#fb923c" },
+      { name: "Netlify", imgUrl: "https://cdn.simpleicons.org/netlify/22d3ee", color: "#22d3ee" },
     ],
   },
   {
@@ -125,7 +127,9 @@ function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: num
   );
 }
 
-function TechItem({ item, index }: { item: { name: string; icon: string; color: string }; index: number }) {
+type TechItemData = { name: string; color: string; icon?: string; imgUrl?: string };
+
+function TechItem({ item, index }: { item: TechItemData; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
@@ -135,10 +139,19 @@ function TechItem({ item, index }: { item: { name: string; icon: string; color: 
       whileHover={{ scale: 1.1, y: -4 }}
       className="glass-card glass-card-hover flex flex-col items-center gap-1.5 p-3 rounded-xl cursor-pointer group"
     >
-      <i
-        className={`${item.icon} text-2xl transition-all duration-200 group-hover:scale-110`}
-        style={{ color: item.color, filter: `drop-shadow(0 0 6px ${item.color}50)` }}
-      />
+      {item.imgUrl ? (
+        <img
+          src={item.imgUrl}
+          alt={item.name}
+          className="w-7 h-7 object-contain transition-all duration-200 group-hover:scale-110"
+          style={{ filter: `drop-shadow(0 0 6px ${item.color}50)` }}
+        />
+      ) : (
+        <i
+          className={`${item.icon} text-2xl transition-all duration-200 group-hover:scale-110`}
+          style={{ color: item.color, filter: `drop-shadow(0 0 6px ${item.color}50)` }}
+        />
+      )}
       <span className="text-xs font-mono text-slate-400 group-hover:text-slate-200 transition-colors text-center leading-tight">{item.name}</span>
     </motion.div>
   );
