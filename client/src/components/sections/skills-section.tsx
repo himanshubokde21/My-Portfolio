@@ -2,28 +2,89 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const backendSkills = [
-  { name: "Node.js / Express.js", percentage: 92, color: "#4ade80" },
-  { name: "PostgreSQL / MySQL", percentage: 90, color: "#60a5fa" },
-  { name: "REST API Design", percentage: 93, color: "#a78bfa" },
-  { name: "TypeScript", percentage: 88, color: "#38bdf8" },
-  { name: "Authentication & Security", percentage: 85, color: "#fb923c" },
+  { name: "Node.js / Express.js / Fastify", percentage: 90, color: "#4ade80" },
+  { name: "Django (Python)", percentage: 78, color: "#22d3ee" },
+  { name: "REST API Design & Zod Validation", percentage: 92, color: "#a78bfa" },
+  { name: "PostgreSQL / MySQL / MongoDB", percentage: 88, color: "#60a5fa" },
+  { name: "Drizzle ORM / Mongoose", percentage: 85, color: "#fb923c" },
 ];
 
 const frontendSkills = [
-  { name: "React.js", percentage: 82, color: "#61dafb" },
-  { name: "HTML / CSS / Tailwind", percentage: 85, color: "#f472b6" },
-  { name: "JavaScript (ES6+)", percentage: 88, color: "#fbbf24" },
+  { name: "React.js", percentage: 85, color: "#61dafb" },
+  { name: "JavaScript (ES6+) / TypeScript", percentage: 88, color: "#fbbf24" },
+  { name: "HTML / CSS / Tailwind CSS", percentage: 90, color: "#f472b6" },
 ];
 
-const technologies = [
-  { name: "Node.js", icon: "fab fa-node-js", color: "#4ade80" },
-  { name: "React", icon: "fab fa-react", color: "#61dafb" },
-  { name: "JavaScript", icon: "fab fa-js", color: "#fbbf24" },
-  { name: "Git / GitHub", icon: "fab fa-git-alt", color: "#f97316" },
-  { name: "PostgreSQL", icon: "fas fa-database", color: "#60a5fa" },
-  { name: "Docker", icon: "fab fa-docker", color: "#38bdf8" },
-  { name: "Linux", icon: "fab fa-linux", color: "#a78bfa" },
-  { name: "REST APIs", icon: "fas fa-plug", color: "#34d399" },
+const techCategories = [
+  {
+    label: "Languages",
+    color: "#a78bfa",
+    items: [
+      { name: "Python", icon: "fab fa-python", color: "#3b82f6" },
+      { name: "JavaScript", icon: "fab fa-js", color: "#fbbf24" },
+    ],
+  },
+  {
+    label: "Frontend",
+    color: "#60a5fa",
+    items: [
+      { name: "React.js", icon: "fab fa-react", color: "#61dafb" },
+      { name: "HTML5", icon: "fab fa-html5", color: "#f97316" },
+      { name: "CSS3", icon: "fab fa-css3-alt", color: "#38bdf8" },
+      { name: "Tailwind", icon: "fas fa-wind", color: "#06b6d4" },
+    ],
+  },
+  {
+    label: "Backend",
+    color: "#4ade80",
+    items: [
+      { name: "Node.js", icon: "fab fa-node-js", color: "#4ade80" },
+      { name: "Express", icon: "fas fa-server", color: "#94a3b8" },
+      { name: "Fastify", icon: "fas fa-bolt", color: "#facc15" },
+      { name: "Django", icon: "fas fa-layer-group", color: "#22d3ee" },
+    ],
+  },
+  {
+    label: "Databases",
+    color: "#fb923c",
+    items: [
+      { name: "PostgreSQL", icon: "fas fa-database", color: "#60a5fa" },
+      { name: "MongoDB", icon: "fas fa-leaf", color: "#4ade80" },
+      { name: "MySQL", icon: "fas fa-table", color: "#f97316" },
+    ],
+  },
+  {
+    label: "ORM & Validation",
+    color: "#c084fc",
+    items: [
+      { name: "Drizzle ORM", icon: "fas fa-project-diagram", color: "#a78bfa" },
+      { name: "Mongoose", icon: "fas fa-plug", color: "#34d399" },
+      { name: "Zod", icon: "fas fa-shield-halved", color: "#f472b6" },
+      { name: "Luna Modeler", icon: "fas fa-diagram-project", color: "#818cf8" },
+    ],
+  },
+  {
+    label: "DevOps & Deploy",
+    color: "#38bdf8",
+    items: [
+      { name: "Git / GitHub", icon: "fab fa-git-alt", color: "#f97316" },
+      { name: "Vercel", icon: "fas fa-triangle", color: "#e2e8f0" },
+      { name: "Railway", icon: "fas fa-train", color: "#7c3aed" },
+      { name: "Firebase", icon: "fas fa-fire", color: "#fb923c" },
+      { name: "Netlify", icon: "fas fa-cloud-arrow-up", color: "#22d3ee" },
+    ],
+  },
+  {
+    label: "Dev Tools & AI",
+    color: "#f472b6",
+    items: [
+      { name: "VS Code", icon: "fas fa-code", color: "#2563eb" },
+      { name: "Cursor", icon: "fas fa-wand-magic-sparkles", color: "#a78bfa" },
+      { name: "Replit", icon: "fas fa-terminal", color: "#f97316" },
+      { name: "GitHub Copilot", icon: "fab fa-github", color: "#94a3b8" },
+      { name: "Claude AI", icon: "fas fa-robot", color: "#fb923c" },
+    ],
+  },
 ];
 
 function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: number }) {
@@ -33,7 +94,7 @@ function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: num
 
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => setAnimatedWidth(skill.percentage), index * 150);
+      const timer = setTimeout(() => setAnimatedWidth(skill.percentage), index * 80);
       return () => clearTimeout(timer);
     }
   }, [isInView, skill.percentage, index]);
@@ -41,13 +102,13 @@ function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: num
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -30 }}
+      initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.35, delay: index * 0.07 }}
       viewport={{ once: true }}
-      className="mb-5"
+      className="mb-4"
     >
-      <div className="flex justify-between mb-2">
+      <div className="flex justify-between mb-1.5">
         <span className="text-slate-300 text-sm font-medium font-mono">{skill.name}</span>
         <span className="text-sm font-mono" style={{ color: skill.color }}>{skill.percentage}%</span>
       </div>
@@ -55,32 +116,30 @@ function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: num
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${animatedWidth}%` }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="h-2 rounded-full relative overflow-hidden"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="h-2 rounded-full"
           style={{ background: `linear-gradient(90deg, ${skill.color}80, ${skill.color})` }}
-        >
-          <div className="absolute inset-0 animate-shimmer" />
-        </motion.div>
+        />
       </div>
     </motion.div>
   );
 }
 
-function TechIcon({ tech, index }: { tech: typeof technologies[0]; index: number }) {
+function TechItem({ item, index }: { item: { name: string; icon: string; color: string }; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.7 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
+      transition={{ duration: 0.25, delay: index * 0.04 }}
       viewport={{ once: true }}
-      whileHover={{ scale: 1.1, y: -6 }}
-      className="glass-card glass-card-hover flex flex-col items-center gap-2 p-4 rounded-xl cursor-pointer group"
+      whileHover={{ scale: 1.1, y: -4 }}
+      className="glass-card glass-card-hover flex flex-col items-center gap-1.5 p-3 rounded-xl cursor-pointer group"
     >
       <i
-        className={`${tech.icon} text-3xl transition-all duration-300 group-hover:scale-110`}
-        style={{ color: tech.color, filter: `drop-shadow(0 0 8px ${tech.color}60)` }}
+        className={`${item.icon} text-2xl transition-all duration-200 group-hover:scale-110`}
+        style={{ color: item.color, filter: `drop-shadow(0 0 6px ${item.color}50)` }}
       />
-      <span className="text-xs font-mono text-slate-400 group-hover:text-slate-200 transition-colors text-center leading-tight">{tech.name}</span>
+      <span className="text-xs font-mono text-slate-400 group-hover:text-slate-200 transition-colors text-center leading-tight">{item.name}</span>
     </motion.div>
   );
 }
@@ -94,8 +153,8 @@ function SkillsCodeBlock() {
         <div className="mac-dot mac-dot-green" />
         <span className="ml-3 text-xs text-slate-500 font-mono">stack.ts</span>
       </div>
-      <div className="mac-body">
-        <div className="syn-comment mb-2">// My tech stack</div>
+      <div className="mac-body text-xs">
+        <div className="syn-comment mb-2">// Himanshu's full tech stack</div>
         <div className="mb-1">
           <span className="syn-keyword">const </span>
           <span className="syn-var">stack</span>
@@ -106,39 +165,50 @@ function SkillsCodeBlock() {
           <span className="syn-type">backend</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"Node.js"</span>
+          <span className="syn-string">"Node"</span>
           <span className="syn-bracket">, </span>
           <span className="syn-string">"Express"</span>
           <span className="syn-bracket">, </span>
+          <span className="syn-string">"Fastify"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"Django"</span>
+          <span className="syn-bracket">],</span>
+        </div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">db</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-bracket">[</span>
           <span className="syn-string">"PostgreSQL"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"MongoDB"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"MySQL"</span>
           <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-type">frontend</span>
+          <span className="syn-type">orm</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"React"</span>
+          <span className="syn-string">"Drizzle"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"TypeScript"</span>
-          <span className="syn-bracket">, </span>
-          <span className="syn-string">"Tailwind"</span>
+          <span className="syn-string">"Mongoose"</span>
           <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-type">tools</span>
+          <span className="syn-type">deploy</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"Docker"</span>
+          <span className="syn-string">"Railway"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"Git"</span>
+          <span className="syn-string">"Vercel"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"Linux"</span>
+          <span className="syn-string">"Firebase"</span>
           <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4">
-          <span className="syn-type">orm</span>
+          <span className="syn-type">validation</span>
           <span className="syn-operator">: </span>
-          <span className="syn-string">"Drizzle / Prisma"</span>
+          <span className="syn-string">"Zod"</span>
         </div>
         <div>
           <span className="syn-bracket">{"}"}</span>
@@ -156,30 +226,30 @@ export default function SkillsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
           <div className="section-label mb-3">03. skills</div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             <span className="gradient-text-purple">Skills & Stack</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Backend-first, full-stack capable — built on Node.js, PostgreSQL, and React.
+            Backend-first, full-stack capable — Node.js, Django, PostgreSQL, MongoDB, and React.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Skill bars */}
+        {/* Top section: skill bars + code block */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-14">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-base font-semibold text-green-400 font-mono mb-5 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-green-400 font-mono mb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
               Backend Skills
             </h3>
@@ -187,7 +257,7 @@ export default function SkillsSection() {
               <SkillBar key={skill.name} skill={skill} index={index} />
             ))}
 
-            <h3 className="text-base font-semibold text-blue-400 font-mono mt-8 mb-5 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-blue-400 font-mono mt-7 mb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
               Frontend Skills
             </h3>
@@ -196,35 +266,46 @@ export default function SkillsSection() {
             ))}
           </motion.div>
 
-          {/* Tech grid + code block */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-6"
           >
-            <div>
-              <h3 className="text-base font-mono text-slate-400 mb-6">
-                <span className="syn-keyword">import </span>
-                <span className="syn-bracket">{"{ "}</span>tools
-                <span className="syn-bracket">{" }"}</span>
-                <span className="syn-keyword"> from </span>
-                <span className="syn-string">"my-arsenal"</span>
-              </h3>
-              <div className="grid grid-cols-4 gap-3">
-                {technologies.map((tech, index) => (
-                  <TechIcon key={tech.name} tech={tech} index={index} />
-                ))}
-              </div>
-            </div>
             <SkillsCodeBlock />
           </motion.div>
         </div>
+
+        {/* Tech category grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="space-y-8"
+        >
+          {techCategories.map((cat, catIdx) => (
+            <div key={cat.label}>
+              <h3
+                className="text-xs font-mono font-semibold mb-4 flex items-center gap-2 uppercase tracking-widest"
+                style={{ color: cat.color }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: cat.color }} />
+                {cat.label}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {cat.items.map((item, i) => (
+                  <TechItem key={item.name} item={item} index={catIdx * 5 + i} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
       <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         rel="stylesheet"
       />
     </section>
