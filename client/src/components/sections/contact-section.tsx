@@ -32,7 +32,7 @@ function ContactCodeBlock() {
         <span className="ml-3 text-xs text-slate-500 font-mono">contact.ts</span>
       </div>
       <div className="mac-body">
-        <div className="syn-comment mb-2">// Let's build something great</div>
+        <div className="syn-comment mb-2">// Let's build something great together</div>
         <div className="mb-1">
           <span className="syn-keyword">const </span>
           <span className="syn-var">contact</span>
@@ -40,33 +40,32 @@ function ContactCodeBlock() {
           <span className="syn-bracket">{"{"}</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-type">email</span>
+          <span className="syn-type">role</span>
           <span className="syn-operator">: </span>
-          <span className="syn-string">"bokdehimanshu802@gmail.com"</span>
+          <span className="syn-string">"Full Stack Developer"</span>
           <span className="syn-bracket">,</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-type">location</span>
+          <span className="syn-type">focus</span>
           <span className="syn-operator">: </span>
-          <span className="syn-string">"Nagpur, India"</span>
+          <span className="syn-string">"Backend Engineering"</span>
           <span className="syn-bracket">,</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-type">response_time</span>
-          <span className="syn-operator">: </span>
-          <span className="syn-string">"within 24h"</span>
-          <span className="syn-bracket">,</span>
-        </div>
-        <div className="ml-4">
-          <span className="syn-type">open_to</span>
+          <span className="syn-type">openTo</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
           <span className="syn-string">"freelance"</span>
           <span className="syn-bracket">, </span>
           <span className="syn-string">"fulltime"</span>
-          <span className="syn-bracket">]</span>
+          <span className="syn-bracket">],</span>
         </div>
-        <div><span className="syn-bracket">{"}"}</span></div>
+        <div className="ml-4 mb-1">
+          <span className="syn-type">response</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-string">"within 24h"</span>
+        </div>
+        <div><span className="syn-bracket">{"}"}</span><span className="syn-bracket">;</span></div>
       </div>
     </div>
   );
@@ -95,7 +94,7 @@ export default function ContactSection() {
     onSuccess: () => {
       toast({
         title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        description: "Thanks for reaching out. I'll get back to you within 24 hours.",
       });
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/contact-submissions"] });
@@ -128,15 +127,15 @@ export default function ContactSection() {
         >
           <div className="section-label mb-3">04. contact</div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="gradient-text-purple">Get In Touch</span>
+            <span className="gradient-text-purple">Let's Work Together</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you.
+            Looking for a backend developer or full-stack engineer? Let's talk about your project.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left: contact info */}
+          {/* Left: info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -145,10 +144,9 @@ export default function ContactSection() {
             className="flex flex-col gap-6"
           >
             <h3 className="text-xl font-bold text-slate-200 font-mono">
-              <span className="syn-keyword">async function</span>{" "}
+              <span className="syn-keyword">async function </span>
               <span className="syn-function">reachOut</span>
-              <span className="syn-bracket">()</span>{" "}
-              <span className="syn-bracket">{"{"}</span>
+              <span className="syn-bracket">() {"{"}</span>
             </h3>
 
             <div className="space-y-4">
@@ -181,7 +179,6 @@ export default function ContactSection() {
 
             <div className="syn-bracket font-mono text-slate-500">{"}"}</div>
 
-            {/* Socials */}
             <div>
               <p className="text-slate-500 text-sm font-mono mb-3">
                 <span className="syn-comment">// find me online</span>
@@ -196,7 +193,6 @@ export default function ContactSection() {
                       whileHover={{ scale: 1.1, y: -3 }}
                       whileTap={{ scale: 0.95 }}
                       className="w-11 h-11 glass-card rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-100 transition-all duration-300"
-                      style={{ "--hover-color": social.color } as any}
                     >
                       <Icon size={18} />
                     </motion.a>
@@ -231,7 +227,7 @@ export default function ContactSection() {
                           <Input
                             {...field}
                             className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
-                            placeholder="Himanshu"
+                            placeholder="John"
                           />
                         </FormControl>
                         <FormMessage />
@@ -248,7 +244,7 @@ export default function ContactSection() {
                           <Input
                             {...field}
                             className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
-                            placeholder="Bokde"
+                            placeholder="Doe"
                           />
                         </FormControl>
                         <FormMessage />
@@ -268,7 +264,7 @@ export default function ContactSection() {
                           {...field}
                           type="email"
                           className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
-                          placeholder="you@example.com"
+                          placeholder="you@company.com"
                         />
                       </FormControl>
                       <FormMessage />
@@ -286,7 +282,7 @@ export default function ContactSection() {
                         <Input
                           {...field}
                           className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all"
-                          placeholder="Project collaboration"
+                          placeholder="Backend API project"
                         />
                       </FormControl>
                       <FormMessage />
@@ -305,7 +301,7 @@ export default function ContactSection() {
                           {...field}
                           rows={5}
                           className="bg-white/5 border-white/10 text-slate-200 placeholder:text-slate-600 focus:border-violet-500/60 focus:bg-white/8 transition-all resize-none"
-                          placeholder="Tell me about your project..."
+                          placeholder="Tell me about your project or role..."
                         />
                       </FormControl>
                       <FormMessage />

@@ -1,78 +1,78 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Brain, BarChart3, Database, Bot, TrendingUp, Eye } from "lucide-react";
+import { ExternalLink, Github, Server, Shield, ShoppingCart, MessageSquare, Zap, Users } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "Sales Forecasting ML Model",
-    description: "End-to-end machine learning pipeline for retail sales prediction using LSTM networks with 94% accuracy.",
-    icon: TrendingUp,
+    title: "REST API with Auth & RBAC",
+    description: "Production-grade Node.js REST API with JWT authentication, role-based access control, rate limiting, and Swagger docs.",
+    icon: Shield,
     accent: "#7c3aed",
     accentLight: "rgba(124,58,237,0.15)",
-    technologies: ["Python", "PyTorch", "Pandas", "Sklearn"],
+    technologies: ["Node.js", "Express", "PostgreSQL", "JWT"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "ML Model",
+    type: "Backend API",
   },
   {
     id: 2,
-    title: "Customer Churn Prediction",
-    description: "Predictive analytics dashboard to identify at-risk customers using ensemble learning methods.",
-    icon: Brain,
+    title: "E-Commerce Backend",
+    description: "Full e-commerce server with product catalog, cart, order management, Stripe payments, and real-time inventory updates via WebSockets.",
+    icon: ShoppingCart,
     accent: "#2563eb",
     accentLight: "rgba(37,99,235,0.15)",
-    technologies: ["Python", "XGBoost", "Power BI", "SQL"],
+    technologies: ["Node.js", "Express", "MySQL", "Stripe"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "Analytics",
+    type: "Full Stack",
   },
   {
     id: 3,
-    title: "NLP Sentiment Analyzer",
-    description: "Real-time sentiment analysis system processing social media data with transformer-based models.",
-    icon: Bot,
+    title: "Real-time Chat Application",
+    description: "Scalable WebSocket-based chat with rooms, typing indicators, message history, and Redis pub/sub for horizontal scaling.",
+    icon: MessageSquare,
     accent: "#0891b2",
     accentLight: "rgba(8,145,178,0.15)",
-    technologies: ["Python", "HuggingFace", "FastAPI", "React"],
+    technologies: ["Node.js", "Socket.io", "Redis", "React"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "NLP / AI",
+    type: "Full Stack",
   },
   {
     id: 4,
-    title: "Data Analytics Dashboard",
-    description: "Interactive business intelligence dashboard with real-time KPI tracking and drill-down capabilities.",
-    icon: BarChart3,
+    title: "Task & Project Management API",
+    description: "Multi-tenant project management REST API with workspace separation, team invitations, task assignments, and due-date notifications.",
+    icon: Users,
     accent: "#059669",
     accentLight: "rgba(5,150,105,0.15)",
-    technologies: ["Power BI", "DAX", "SQL Server", "Python"],
+    technologies: ["Node.js", "Drizzle ORM", "PostgreSQL", "Zod"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "BI Dashboard",
+    type: "Backend API",
   },
   {
     id: 5,
-    title: "Recommendation Engine",
-    description: "Collaborative filtering recommendation system deployed as a microservice with REST API.",
-    icon: Eye,
+    title: "Microservices Gateway",
+    description: "API gateway with service discovery, load balancing, circuit breaking, and centralized logging across multiple microservices.",
+    icon: Zap,
     accent: "#9333ea",
     accentLight: "rgba(147,51,234,0.15)",
-    technologies: ["Python", "Surprise", "Flask", "PostgreSQL"],
+    technologies: ["Node.js", "Docker", "NGINX", "Redis"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "ML Model",
+    type: "Backend / DevOps",
   },
   {
     id: 6,
-    title: "ETL Data Pipeline",
-    description: "Automated data pipeline processing 10M+ records daily with real-time monitoring and alerting.",
-    icon: Database,
+    title: "Developer Portfolio (This Site)",
+    description: "Full-stack portfolio built with React + TypeScript frontend, Express.js backend, PostgreSQL contact form storage, and Drizzle ORM.",
+    icon: Server,
     accent: "#d97706",
     accentLight: "rgba(217,119,6,0.15)",
-    technologies: ["Apache Spark", "Airflow", "PostgreSQL", "Python"],
+    technologies: ["React", "TypeScript", "Express", "PostgreSQL"],
     demoUrl: "#",
     codeUrl: "#",
-    type: "Data Engineering",
+    type: "Full Stack",
   },
 ];
 
@@ -86,16 +86,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       viewport={{ once: true }}
       whileHover={{ y: -6 }}
       className="glass-card glass-card-hover rounded-2xl overflow-hidden group flex flex-col"
-      style={{ "--hover-accent": project.accent } as any}
     >
-      {/* Header stripe */}
       <div
         className="h-1 w-full"
         style={{ background: `linear-gradient(90deg, ${project.accent}, ${project.accent}60)` }}
       />
 
       <div className="p-6 flex flex-col flex-1">
-        {/* Icon + type badge */}
         <div className="flex items-start justify-between mb-4">
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center"
@@ -118,7 +115,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           {project.description}
         </p>
 
-        {/* Tech tags */}
         <div className="flex flex-wrap gap-2 mb-5">
           {project.technologies.map((tech) => (
             <span
@@ -130,7 +126,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           ))}
         </div>
 
-        {/* Links */}
         <div className="flex items-center gap-4 pt-4 border-t border-white/5">
           <a
             href={project.demoUrl}
@@ -164,14 +159,19 @@ function TerminalBlock() {
       <div className="mac-body">
         <div className="mb-1">
           <span className="text-green-400 mr-2">~</span>
-          <span className="syn-string">$ ls projects/</span>
+          <span className="syn-string">$ ls backend-projects/</span>
         </div>
         <div className="text-slate-400 ml-4 mb-2">
-          {projects.slice(0, 3).map(p => (
-            <div key={p.id}><span className="syn-function">{p.title.toLowerCase().replace(/ /g, '_')}.ipynb</span></div>
-          ))}
-          <span className="syn-comment">... and {projects.length - 3} more</span>
+          <div><span className="syn-function">rest-api-auth/</span></div>
+          <div><span className="syn-function">ecommerce-backend/</span></div>
+          <div><span className="syn-function">realtime-chat/</span></div>
+          <span className="syn-comment">... and more on GitHub</span>
         </div>
+        <div className="mb-1">
+          <span className="text-green-400 mr-2">~</span>
+          <span className="syn-string">$ npm run start</span>
+        </div>
+        <div className="ml-4 mb-1 syn-comment">Server listening on port 3000 ✓</div>
         <div>
           <span className="text-green-400 mr-2">~</span>
           <span className="syn-string">$ _</span>
@@ -197,10 +197,10 @@ export default function PortfolioSection() {
         >
           <div className="section-label mb-3">02. portfolio</div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="gradient-text-purple">My Projects</span>
+            <span className="gradient-text-purple">Projects</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Data-driven projects and ML solutions that solve real-world problems.
+            Backend-heavy full-stack projects — APIs, microservices, and end-to-end web applications.
           </p>
         </motion.div>
 

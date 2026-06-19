@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import InteractiveProfile from "../common/interactive-profile";
 import profileImage2 from "@assets/profile-image-2.png";
-import { MapPin, GraduationCap, Briefcase, Coffee } from "lucide-react";
+import { MapPin, Server, Database, Globe } from "lucide-react";
 
 const stats = [
-  { target: 50, label: "Projects Completed", icon: Briefcase },
-  { target: 5, label: "Years Experience", icon: GraduationCap },
-  { target: 30, label: "Happy Clients", icon: Coffee },
-  { target: 100, label: "Cups of Coffee", icon: Coffee },
+  { target: 40, label: "Projects Shipped", icon: Globe },
+  { target: 3, label: "Years Experience", icon: Server },
+  { target: 15, label: "APIs Built", icon: Database },
+  { target: 8, label: "Happy Clients", icon: Globe },
 ];
 
-function StatCard({ target, label, icon: Icon }: { target: number; label: string; icon: any }) {
+function StatCard({ target, label }: { target: number; label: string }) {
   const { count, ref } = useCounterAnimation(target);
   return (
     <motion.div
@@ -34,7 +34,7 @@ function AboutCodeBlock() {
         <div className="mac-dot mac-dot-red" />
         <div className="mac-dot mac-dot-yellow" />
         <div className="mac-dot mac-dot-green" />
-        <span className="ml-3 text-xs text-slate-500 font-mono">about_me.json</span>
+        <span className="ml-3 text-xs text-slate-500 font-mono">about.json</span>
       </div>
       <div className="mac-body">
         <div><span className="syn-bracket">{"{"}</span></div>
@@ -47,7 +47,7 @@ function AboutCodeBlock() {
         <div className="ml-4">
           <span className="syn-string">"role"</span>
           <span className="syn-operator">: </span>
-          <span className="syn-string">"Data Scientist & AI/ML Engineer"</span>
+          <span className="syn-string">"Full Stack Developer (Backend Focus)"</span>
           <span className="syn-bracket">,</span>
         </div>
         <div className="ml-4">
@@ -57,30 +57,24 @@ function AboutCodeBlock() {
           <span className="syn-bracket">,</span>
         </div>
         <div className="ml-4">
-          <span className="syn-string">"education"</span>
-          <span className="syn-operator">: </span>
-          <span className="syn-string">"B.Tech in Data Science"</span>
-          <span className="syn-bracket">,</span>
-        </div>
-        <div className="ml-4">
-          <span className="syn-string">"interests"</span>
+          <span className="syn-string">"backend"</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-        </div>
-        <div className="ml-8">
-          <span className="syn-string">"Machine Learning"</span>
+          <span className="syn-string">"Node.js"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"Deep Learning"</span>
-          <span className="syn-bracket">,</span>
-        </div>
-        <div className="ml-8">
-          <span className="syn-string">"Data Analysis"</span>
+          <span className="syn-string">"Express"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"Open Source"</span>
+          <span className="syn-string">"PostgreSQL"</span>
+          <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4">
-          <span className="syn-bracket">]</span>
-          <span className="syn-bracket">,</span>
+          <span className="syn-string">"frontend"</span>
+          <span className="syn-operator">: </span>
+          <span className="syn-bracket">[</span>
+          <span className="syn-string">"React"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"TypeScript"</span>
+          <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4">
           <span className="syn-string">"available"</span>
@@ -96,7 +90,6 @@ function AboutCodeBlock() {
 export default function AboutSection() {
   return (
     <section id="about" className="py-20 midnight-bg relative overflow-hidden">
-      {/* Background orbs */}
       <div className="particle w-72 h-72 top-20 right-[-6rem] bg-blue-600/8 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -112,7 +105,7 @@ export default function AboutSection() {
             <span className="gradient-text-purple">About Me</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            A passionate technologist who turns data into decisions and models into impact.
+            A backend-first developer who loves building systems that scale — from REST APIs to full-stack web apps.
           </p>
         </motion.div>
 
@@ -140,7 +133,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-slate-100 mb-4">
-              Building Intelligent Systems
+              Building for the Server Room First
             </h3>
 
             <div className="flex items-center gap-2 text-slate-500 text-sm mb-6">
@@ -149,14 +142,18 @@ export default function AboutSection() {
             </div>
 
             <p className="text-slate-400 leading-relaxed mb-4">
-              I'm a Data Scientist and AI/ML Engineer with a deep passion for extracting
-              meaningful insights from complex datasets. My work spans the full spectrum
-              from exploratory data analysis to deploying production-ready ML models.
+              I'm a Full Stack Web Developer with a strong emphasis on backend engineering.
+              My core strength is designing and building scalable REST APIs, microservices,
+              and server-side architectures using Node.js, Express, and PostgreSQL.
+            </p>
+            <p className="text-slate-400 leading-relaxed mb-4">
+              On the frontend, I work with React and TypeScript to deliver clean, functional
+              interfaces — but my passion lies in what happens behind the scenes: database
+              design, authentication flows, API performance, and system reliability.
             </p>
             <p className="text-slate-400 leading-relaxed mb-8">
-              When I'm not training models or writing Python, I'm exploring the latest
-              research in deep learning, contributing to open-source projects, and
-              building tools that make data more accessible to everyone.
+              Whether it's a greenfield project or a legacy system that needs refactoring,
+              I write code that is readable, tested, and built to last.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
@@ -168,7 +165,7 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   viewport={{ once: true }}
                 >
-                  <StatCard target={stat.target} label={stat.label} icon={stat.icon} />
+                  <StatCard target={stat.target} label={stat.label} />
                 </motion.div>
               ))}
             </div>

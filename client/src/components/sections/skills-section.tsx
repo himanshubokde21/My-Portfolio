@@ -1,35 +1,39 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
-const technicalSkills = [
-  { name: "Data Science & Analysis", percentage: 92, color: "#a78bfa" },
-  { name: "Python / Machine Learning", percentage: 90, color: "#60a5fa" },
-  { name: "SQL / Database Management", percentage: 88, color: "#34d399" },
-  { name: "Web Development", percentage: 85, color: "#f472b6" },
-  { name: "Power BI / Data Visualization", percentage: 80, color: "#fb923c" },
+const backendSkills = [
+  { name: "Node.js / Express.js", percentage: 92, color: "#4ade80" },
+  { name: "PostgreSQL / MySQL", percentage: 90, color: "#60a5fa" },
+  { name: "REST API Design", percentage: 93, color: "#a78bfa" },
+  { name: "TypeScript", percentage: 88, color: "#38bdf8" },
+  { name: "Authentication & Security", percentage: 85, color: "#fb923c" },
+];
+
+const frontendSkills = [
+  { name: "React.js", percentage: 82, color: "#61dafb" },
+  { name: "HTML / CSS / Tailwind", percentage: 85, color: "#f472b6" },
+  { name: "JavaScript (ES6+)", percentage: 88, color: "#fbbf24" },
 ];
 
 const technologies = [
-  { name: "Python", icon: "fab fa-python", color: "#3b82f6" },
-  { name: "Database", icon: "fas fa-database", color: "#38bdf8" },
-  { name: "Power BI", icon: "fas fa-chart-bar", color: "#eab308" },
-  { name: "Machine Learning", icon: "fas fa-brain", color: "#a855f7" },
-  { name: "Data Analysis", icon: "fas fa-chart-line", color: "#22c55e" },
-  { name: "AI/ML", icon: "fas fa-robot", color: "#ef4444" },
-  { name: "Web Dev", icon: "fas fa-code", color: "#f97316" },
-  { name: "Data Science", icon: "fas fa-microscope", color: "#818cf8" },
+  { name: "Node.js", icon: "fab fa-node-js", color: "#4ade80" },
+  { name: "React", icon: "fab fa-react", color: "#61dafb" },
+  { name: "JavaScript", icon: "fab fa-js", color: "#fbbf24" },
+  { name: "Git / GitHub", icon: "fab fa-git-alt", color: "#f97316" },
+  { name: "PostgreSQL", icon: "fas fa-database", color: "#60a5fa" },
+  { name: "Docker", icon: "fab fa-docker", color: "#38bdf8" },
+  { name: "Linux", icon: "fab fa-linux", color: "#a78bfa" },
+  { name: "REST APIs", icon: "fas fa-plug", color: "#34d399" },
 ];
 
-function SkillBar({ skill, index }: { skill: typeof technicalSkills[0]; index: number }) {
+function SkillBar({ skill, index }: { skill: typeof backendSkills[0]; index: number }) {
   const [animatedWidth, setAnimatedWidth] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => {
-        setAnimatedWidth(skill.percentage);
-      }, index * 150);
+      const timer = setTimeout(() => setAnimatedWidth(skill.percentage), index * 150);
       return () => clearTimeout(timer);
     }
   }, [isInView, skill.percentage, index]);
@@ -41,7 +45,7 @@ function SkillBar({ skill, index }: { skill: typeof technicalSkills[0]; index: n
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="mb-6"
+      className="mb-5"
     >
       <div className="flex justify-between mb-2">
         <span className="text-slate-300 text-sm font-medium font-mono">{skill.name}</span>
@@ -53,7 +57,7 @@ function SkillBar({ skill, index }: { skill: typeof technicalSkills[0]; index: n
           animate={{ width: `${animatedWidth}%` }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="h-2 rounded-full relative overflow-hidden"
-          style={{ background: `linear-gradient(90deg, ${skill.color}99, ${skill.color})` }}
+          style={{ background: `linear-gradient(90deg, ${skill.color}80, ${skill.color})` }}
         >
           <div className="absolute inset-0 animate-shimmer" />
         </motion.div>
@@ -88,55 +92,57 @@ function SkillsCodeBlock() {
         <div className="mac-dot mac-dot-red" />
         <div className="mac-dot mac-dot-yellow" />
         <div className="mac-dot mac-dot-green" />
-        <span className="ml-3 text-xs text-slate-500 font-mono">skills.py</span>
+        <span className="ml-3 text-xs text-slate-500 font-mono">stack.ts</span>
       </div>
       <div className="mac-body">
-        <div className="syn-comment mb-2"># My technical stack</div>
+        <div className="syn-comment mb-2">// My tech stack</div>
         <div className="mb-1">
+          <span className="syn-keyword">const </span>
           <span className="syn-var">stack</span>
           <span className="syn-operator"> = </span>
           <span className="syn-bracket">{"{"}</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-string">"languages"</span>
+          <span className="syn-type">backend</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"Python"</span>
+          <span className="syn-string">"Node.js"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"SQL"</span>
+          <span className="syn-string">"Express"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"R"</span>
+          <span className="syn-string">"PostgreSQL"</span>
           <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-string">"ml_libs"</span>
+          <span className="syn-type">frontend</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"PyTorch"</span>
+          <span className="syn-string">"React"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"sklearn"</span>
+          <span className="syn-string">"TypeScript"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"Tailwind"</span>
           <span className="syn-bracket">],</span>
         </div>
         <div className="ml-4 mb-1">
-          <span className="syn-string">"data"</span>
+          <span className="syn-type">tools</span>
           <span className="syn-operator">: </span>
           <span className="syn-bracket">[</span>
-          <span className="syn-string">"Pandas"</span>
+          <span className="syn-string">"Docker"</span>
           <span className="syn-bracket">, </span>
-          <span className="syn-string">"NumPy"</span>
+          <span className="syn-string">"Git"</span>
+          <span className="syn-bracket">, </span>
+          <span className="syn-string">"Linux"</span>
           <span className="syn-bracket">],</span>
         </div>
-        <div className="ml-4 mb-1">
-          <span className="syn-string">"viz"</span>
+        <div className="ml-4">
+          <span className="syn-type">orm</span>
           <span className="syn-operator">: </span>
-          <span className="syn-bracket">[</span>
-          <span className="syn-string">"Power BI"</span>
-          <span className="syn-bracket">, </span>
-          <span className="syn-string">"Matplotlib"</span>
-          <span className="syn-bracket">]</span>
+          <span className="syn-string">"Drizzle / Prisma"</span>
         </div>
         <div>
           <span className="syn-bracket">{"}"}</span>
+          <span className="syn-bracket">;</span>
         </div>
       </div>
     </div>
@@ -158,10 +164,10 @@ export default function SkillsSection() {
         >
           <div className="section-label mb-3">03. skills</div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="gradient-text-purple">Skills & Technologies</span>
+            <span className="gradient-text-purple">Skills & Stack</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit spanning data science, AI/ML, and visualization.
+            Backend-first, full-stack capable — built on Node.js, PostgreSQL, and React.
           </p>
         </motion.div>
 
@@ -173,18 +179,21 @@ export default function SkillsSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-slate-200 mb-8 font-mono">
-              <span className="syn-keyword">const</span>{" "}
-              <span className="syn-var">expertise</span>{" "}
-              <span className="syn-operator">=</span>{" "}
-              <span className="syn-bracket">{"["}</span>
+            <h3 className="text-base font-semibold text-green-400 font-mono mb-5 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
+              Backend Skills
             </h3>
-            {technicalSkills.map((skill, index) => (
+            {backendSkills.map((skill, index) => (
               <SkillBar key={skill.name} skill={skill} index={index} />
             ))}
-            <div className="text-slate-500 font-mono text-sm">
-              <span className="syn-bracket">{"]"}</span>
-            </div>
+
+            <h3 className="text-base font-semibold text-blue-400 font-mono mt-8 mb-5 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
+              Frontend Skills
+            </h3>
+            {frontendSkills.map((skill, index) => (
+              <SkillBar key={skill.name} skill={skill} index={index} />
+            ))}
           </motion.div>
 
           {/* Tech grid + code block */}
@@ -196,10 +205,12 @@ export default function SkillsSection() {
             className="flex flex-col gap-8"
           >
             <div>
-              <h3 className="text-xl font-bold text-slate-200 mb-6 font-mono">
-                <span className="syn-keyword">import</span>{" "}
-                <span className="syn-bracket">{"{"}</span>{" "}tools{" "}
-                <span className="syn-bracket">{"}"}</span>
+              <h3 className="text-base font-mono text-slate-400 mb-6">
+                <span className="syn-keyword">import </span>
+                <span className="syn-bracket">{"{ "}</span>tools
+                <span className="syn-bracket">{" }"}</span>
+                <span className="syn-keyword"> from </span>
+                <span className="syn-string">"my-arsenal"</span>
               </h3>
               <div className="grid grid-cols-4 gap-3">
                 {technologies.map((tech, index) => (
