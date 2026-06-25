@@ -1,78 +1,71 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Server, Shield, ShoppingCart, MessageSquare, Zap, Users } from "lucide-react";
+import { ExternalLink, Github, Play, MessageCircle, Brain, Flame, Search, Lock } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "REST API with Auth & RBAC",
-    description: "Production-grade Node.js REST API with JWT authentication, role-based access control, rate limiting, and Swagger docs.",
-    icon: Shield,
-    accent: "#7c3aed",
-    accentLight: "rgba(124,58,237,0.15)",
-    technologies: ["Node.js", "Express", "PostgreSQL", "JWT"],
-    demoUrl: "#",
-    codeUrl: "#",
+    title: "Backend — YouTube Clone",
+    description:
+      "Production-grade YouTube backend built with TypeScript & Express. Features video upload/streaming pipeline, JWT auth, subscriptions, likes, comments, watch history, and aggregation pipelines for analytics.",
+    icon: Play,
+    accent: "#ef4444",
+    accentLight: "rgba(239,68,68,0.15)",
+    technologies: ["TypeScript", "Node.js", "Express", "MongoDB", "Mongoose"],
+    codeUrl: "https://github.com/himanshubokde21/Backend-Youtube",
     type: "Backend API",
+    isPrivate: false,
   },
   {
     id: 2,
-    title: "E-Commerce Backend",
-    description: "Full e-commerce server with product catalog, cart, order management, Stripe payments, and real-time inventory updates via WebSockets.",
-    icon: ShoppingCart,
-    accent: "#2563eb",
-    accentLight: "rgba(37,99,235,0.15)",
-    technologies: ["Node.js", "Express", "MySQL", "Stripe"],
-    demoUrl: "#",
-    codeUrl: "#",
+    title: "Backend — WhatsApp Clone",
+    description:
+      "WhatsApp-inspired messaging backend in TypeScript. Real-time chat via Socket.io, group management, media sharing, message delivery/read receipts, and contact synchronization.",
+    icon: MessageCircle,
+    accent: "#16a34a",
+    accentLight: "rgba(22,163,74,0.15)",
+    technologies: ["TypeScript", "Node.js", "Socket.io", "Express", "JWT"],
+    codeUrl: "https://github.com/himanshubokde21/Backend-WhatsApp",
     type: "Full Stack",
+    isPrivate: false,
   },
   {
     id: 3,
-    title: "Real-time Chat Application",
-    description: "Scalable WebSocket-based chat with rooms, typing indicators, message history, and Redis pub/sub for horizontal scaling.",
-    icon: MessageSquare,
-    accent: "#0891b2",
-    accentLight: "rgba(8,145,178,0.15)",
-    technologies: ["Node.js", "Socket.io", "Redis", "React"],
-    demoUrl: "#",
-    codeUrl: "#",
-    type: "Full Stack",
+    title: "CodeNeura",
+    description:
+      "Web-based platform blending AI, data science, and visualization tools for interactive learning. Explore ML concepts, data analysis, and AI-powered workflows — all in the browser.",
+    icon: Brain,
+    accent: "#7c3aed",
+    accentLight: "rgba(124,58,237,0.15)",
+    technologies: ["JavaScript", "Python", "AI/ML", "Data Viz"],
+    codeUrl: "https://github.com/himanshubokde21/CodeNeura",
+    type: "AI Platform",
+    isPrivate: false,
   },
   {
     id: 4,
-    title: "Task & Project Management API",
-    description: "Multi-tenant project management REST API with workspace separation, team invitations, task assignments, and due-date notifications.",
-    icon: Users,
-    accent: "#059669",
-    accentLight: "rgba(5,150,105,0.15)",
-    technologies: ["Node.js", "Drizzle ORM", "PostgreSQL", "Zod"],
-    demoUrl: "#",
-    codeUrl: "#",
-    type: "Backend API",
+    title: "Remind Candles",
+    description:
+      "E-commerce platform for a candle brand built with TypeScript. Product catalog, cart, checkout flow, and order management with a clean storefront UI.",
+    icon: Flame,
+    accent: "#f59e0b",
+    accentLight: "rgba(245,158,11,0.15)",
+    technologies: ["TypeScript", "Node.js", "Express", "PostgreSQL"],
+    codeUrl: "https://github.com/himanshubokde21/Remind-Candles",
+    type: "Full Stack",
+    isPrivate: false,
   },
   {
     id: 5,
-    title: "Microservices Gateway",
-    description: "API gateway with service discovery, load balancing, circuit breaking, and centralized logging across multiple microservices.",
-    icon: Zap,
-    accent: "#9333ea",
-    accentLight: "rgba(147,51,234,0.15)",
-    technologies: ["Node.js", "Docker", "NGINX", "Redis"],
-    demoUrl: "#",
-    codeUrl: "#",
-    type: "Backend / DevOps",
-  },
-  {
-    id: 6,
-    title: "Developer Portfolio (This Site)",
-    description: "Full-stack portfolio built with React + TypeScript frontend, Express.js backend, PostgreSQL contact form storage, and Drizzle ORM.",
-    icon: Server,
-    accent: "#d97706",
-    accentLight: "rgba(217,119,6,0.15)",
-    technologies: ["React", "TypeScript", "Express", "PostgreSQL"],
-    demoUrl: "#",
-    codeUrl: "#",
+    title: "CivicAudit",
+    description:
+      "Civic engagement and transparency platform for auditing local governance data. Built to surface public accountability insights through structured data pipelines and dashboards.",
+    icon: Search,
+    accent: "#0891b2",
+    accentLight: "rgba(8,145,178,0.15)",
+    technologies: ["TypeScript", "Node.js", "PostgreSQL", "React"],
+    codeUrl: null,
     type: "Full Stack",
+    isPrivate: true,
   },
 ];
 
@@ -100,12 +93,20 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           >
             <Icon size={22} style={{ color: project.accent }} />
           </div>
-          <span
-            className="text-xs font-mono font-semibold px-2 py-1 rounded-md"
-            style={{ background: project.accentLight, color: project.accent }}
-          >
-            {project.type}
-          </span>
+          <div className="flex items-center gap-2">
+            {project.isPrivate && (
+              <span className="flex items-center gap-1 text-xs font-mono px-2 py-1 rounded-md bg-white/5 text-slate-500 border border-white/8">
+                <Lock size={10} />
+                Private
+              </span>
+            )}
+            <span
+              className="text-xs font-mono font-semibold px-2 py-1 rounded-md"
+              style={{ background: project.accentLight, color: project.accent }}
+            >
+              {project.type}
+            </span>
+          </div>
         </div>
 
         <h3 className="text-lg font-bold text-slate-100 mb-2 group-hover:text-white transition-colors">
@@ -127,20 +128,23 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
 
         <div className="flex items-center gap-4 pt-4 border-t border-white/5">
-          <a
-            href={project.demoUrl}
-            className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-violet-400 transition-colors duration-200"
-          >
-            <ExternalLink size={14} />
-            Live Demo
-          </a>
-          <a
-            href={project.codeUrl}
-            className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-blue-400 transition-colors duration-200"
-          >
-            <Github size={14} />
-            Source Code
-          </a>
+          {project.codeUrl ? (
+            <a
+              href={project.codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-blue-400 transition-colors duration-200"
+              data-testid={`link-github-${project.id}`}
+            >
+              <Github size={14} />
+              Source Code
+            </a>
+          ) : (
+            <span className="flex items-center gap-1.5 text-sm text-slate-600 cursor-not-allowed">
+              <Lock size={14} />
+              Private Repo
+            </span>
+          )}
         </div>
       </div>
     </motion.div>
@@ -159,13 +163,14 @@ function TerminalBlock() {
       <div className="mac-body">
         <div className="mb-1">
           <span className="text-green-400 mr-2">~</span>
-          <span className="syn-string">$ ls backend-projects/</span>
+          <span className="syn-string">$ ls projects/</span>
         </div>
         <div className="text-slate-400 ml-4 mb-2">
-          <div><span className="syn-function">rest-api-auth/</span></div>
-          <div><span className="syn-function">ecommerce-backend/</span></div>
-          <div><span className="syn-function">realtime-chat/</span></div>
-          <span className="syn-comment">... and more on GitHub</span>
+          <div><span className="syn-function">Backend-Youtube/</span></div>
+          <div><span className="syn-function">Backend-WhatsApp/</span></div>
+          <div><span className="syn-function">CodeNeura/</span></div>
+          <div><span className="syn-function">Remind-Candles/</span></div>
+          <div><span className="syn-function">CivicAudit/</span> <span className="syn-comment"># private</span></div>
         </div>
         <div className="mb-1">
           <span className="text-green-400 mr-2">~</span>
@@ -200,7 +205,7 @@ export default function PortfolioSection() {
             <span className="gradient-text-purple">Projects</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Backend-heavy full-stack projects — APIs, microservices, and end-to-end web applications.
+            Backend-heavy full-stack projects — APIs, AI platforms, and end-to-end web applications.
           </p>
         </motion.div>
 
@@ -219,10 +224,11 @@ export default function PortfolioSection() {
         >
           <TerminalBlock />
           <a
-            href="https://github.com"
+            href="https://github.com/himanshubokde21"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-midnight-outline flex items-center gap-2"
+            data-testid="link-github-profile"
           >
             <Github size={16} />
             View All on GitHub
