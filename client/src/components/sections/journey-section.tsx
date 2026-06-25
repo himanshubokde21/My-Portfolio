@@ -1,34 +1,34 @@
 import { motion } from "framer-motion";
-import { Trophy, BookOpen, Code2, GitBranch, Cpu, Globe, Flame, Star } from "lucide-react";
+import { Trophy, BookOpen, Code2, GitBranch, Cpu, Globe, Flame } from "lucide-react";
 
 const achievements = [
   {
     icon: Globe,
     accent: "#0891b2",
-    title: "Citizen Auditor AI",
-    desc: "Built an AI-powered civic transparency platform — live and deployed on Replit.",
+    title: "Citizen Auditor AI — Live",
+    desc: "Built and deployed an AI-powered civic transparency platform on Replit, fully functional and publicly accessible.",
     tag: "Shipped",
   },
   {
-    icon: Code2,
+    icon: GitBranch,
     accent: "#7c3aed",
-    title: "5 Real-World Projects",
-    desc: "Built and shipped full-stack and backend projects from scratch — YouTube, WhatsApp, CodeNeura, and more.",
-    tag: "Projects",
+    title: "18 Repos in Under a Year",
+    desc: "Started GitHub in Sept 2024 and shipped 18 repositories — backend APIs, AI tools, Python projects, and more.",
+    tag: "GitHub",
   },
   {
-    icon: GitBranch,
+    icon: Code2,
     accent: "#16a34a",
-    title: "Open Source Contributor",
-    desc: "Actively pushing code on GitHub — backend APIs, TypeScript projects, and personal tools.",
-    tag: "Open Source",
+    title: "TypeScript & Python Focus",
+    desc: "7 TypeScript repos (Node.js/Express backends) and 4 Python repos (Streamlit, data science, ML) — two strong stacks.",
+    tag: "Stack",
   },
   {
     icon: Flame,
     accent: "#f59e0b",
-    title: "Remind Candles",
-    desc: "Independently designed and built a birthday reminder app — full stack, from idea to deployment.",
-    tag: "Solo Build",
+    title: "5 Full Projects from Scratch",
+    desc: "YouTube clone backend, WhatsApp backend, CodeNeura, Remind Candles, and Citizen Auditor AI — all built solo.",
+    tag: "Solo Builds",
   },
 ];
 
@@ -46,20 +46,6 @@ const learning = [
     title: "System Design",
     desc: "Learning how to design scalable systems — load balancing, caching, DB sharding.",
     progress: 40,
-  },
-  {
-    icon: Star,
-    accent: "#0891b2",
-    title: "DevOps & Docker",
-    desc: "Containerizing apps, writing Dockerfiles, and understanding CI/CD pipelines.",
-    progress: 50,
-  },
-  {
-    icon: BookOpen,
-    accent: "#16a34a",
-    title: "Cloud Basics (AWS)",
-    desc: "Exploring EC2, S3, and serverless functions for deploying backend services.",
-    progress: 30,
   },
 ];
 
