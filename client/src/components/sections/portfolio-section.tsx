@@ -12,6 +12,7 @@ const projects = [
     accentLight: "rgba(239,68,68,0.15)",
     technologies: ["TypeScript", "Node.js", "Express", "MongoDB", "Mongoose"],
     codeUrl: "https://github.com/himanshubokde21/Backend-Youtube",
+    demoUrl: null,
     type: "Backend API",
     isPrivate: false,
   },
@@ -25,6 +26,7 @@ const projects = [
     accentLight: "rgba(22,163,74,0.15)",
     technologies: ["TypeScript", "Node.js", "Socket.io", "Express", "JWT"],
     codeUrl: "https://github.com/himanshubokde21/Backend-WhatsApp",
+    demoUrl: null,
     type: "Full Stack",
     isPrivate: false,
   },
@@ -38,6 +40,7 @@ const projects = [
     accentLight: "rgba(124,58,237,0.15)",
     technologies: ["JavaScript", "Python", "AI/ML", "Data Viz"],
     codeUrl: "https://github.com/himanshubokde21/CodeNeura",
+    demoUrl: null,
     type: "AI Platform",
     isPrivate: false,
   },
@@ -51,20 +54,22 @@ const projects = [
     accentLight: "rgba(245,158,11,0.15)",
     technologies: ["TypeScript", "Node.js", "Express", "PostgreSQL"],
     codeUrl: "https://github.com/himanshubokde21/Remind-Candles",
+    demoUrl: null,
     type: "Full Stack",
     isPrivate: false,
   },
   {
     id: 5,
-    title: "CivicAudit",
+    title: "Citizen Auditor AI",
     description:
-      "Civic engagement and transparency platform for auditing local governance data. Built to surface public accountability insights through structured data pipelines and dashboards.",
+      "AI-powered civic transparency platform that audits local governance data. Surfaces public accountability insights through intelligent data pipelines, structured analysis, and interactive dashboards.",
     icon: Search,
     accent: "#0891b2",
     accentLight: "rgba(8,145,178,0.15)",
-    technologies: ["TypeScript", "Node.js", "PostgreSQL", "React"],
+    technologies: ["TypeScript", "Node.js", "PostgreSQL", "React", "AI"],
     codeUrl: null,
-    type: "Full Stack",
+    demoUrl: "https://citizen-auditor-system--bokdesaurabh802.replit.app/",
+    type: "AI + Civic Tech",
     isPrivate: true,
   },
 ];
@@ -128,6 +133,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
 
         <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-violet-400 transition-colors duration-200"
+              data-testid={`link-demo-${project.id}`}
+            >
+              <ExternalLink size={14} />
+              Live Demo
+            </a>
+          )}
           {project.codeUrl ? (
             <a
               href={project.codeUrl}
