@@ -17,7 +17,7 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: "#", label: "LinkedIn", color: "#2563eb" },
+  { icon: Linkedin, href: "https://linkedin.com/in/himanshu-bokde-2a19462b5", label: "LinkedIn", color: "#2563eb" },
   { icon: Github, href: "https://github.com/himanshubokde21", label: "GitHub", color: "#a78bfa" },
 ];
 

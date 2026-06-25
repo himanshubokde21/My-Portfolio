@@ -1,50 +1,50 @@
 import { motion } from "framer-motion";
-import { Trophy, BookOpen, Code2, GitBranch, Cpu, Globe, Flame } from "lucide-react";
+import { Trophy, BookOpen, Code2, Cpu, Globe, Flame } from "lucide-react";
 
 const achievements = [
+  {
+    icon: Trophy,
+    accent: "#f59e0b",
+    title: "1st Runner-Up — HACKxPBCOE",
+    desc: "Secured 1st Runner-Up at the HACKxPBCOE Hackathon — competed and placed in a real college-level hackathon.",
+    tag: "Hackathon",
+  },
+  {
+    icon: Code2,
+    accent: "#ef4444",
+    title: "500+ DSA Problems · LeetCode 1600+",
+    desc: "Solved 500+ problems on LeetCode with a highest rating of 1600+ — consistently grinding arrays, trees, and DP.",
+    tag: "LeetCode",
+  },
   {
     icon: Globe,
     accent: "#0891b2",
     title: "Citizen Auditor AI — Live",
-    desc: "Built and deployed an AI-powered civic transparency platform on Replit, fully functional and publicly accessible.",
+    desc: "Built a smart civic complaint platform with geo-tagged reports, role-based workflow, analytics dashboard, and multi-language support.",
     tag: "Shipped",
   },
   {
-    icon: GitBranch,
-    accent: "#7c3aed",
-    title: "18 Repos in Under a Year",
-    desc: "Started GitHub in Sept 2024 and shipped 18 repositories — backend APIs, AI tools, Python projects, and more.",
-    tag: "GitHub",
-  },
-  {
-    icon: Code2,
-    accent: "#16a34a",
-    title: "TypeScript & Python Focus",
-    desc: "7 TypeScript repos (Node.js/Express backends) and 4 Python repos (Streamlit, data science, ML) — two strong stacks.",
-    tag: "Stack",
-  },
-  {
     icon: Flame,
-    accent: "#f59e0b",
-    title: "5 Full Projects from Scratch",
-    desc: "YouTube clone backend, WhatsApp backend, CodeNeura, Remind Candles, and Citizen Auditor AI — all built solo.",
-    tag: "Solo Builds",
+    accent: "#7c3aed",
+    title: "15+ Projects Built Since 2024",
+    desc: "Started coding in 2024 and shipped 15+ full-stack and backend projects — all built from scratch, solo.",
+    tag: "Builder",
   },
 ];
 
 const learning = [
   {
-    icon: Trophy,
-    accent: "#f59e0b",
+    icon: Code2,
+    accent: "#ef4444",
     title: "Data Structures & Algorithms",
-    desc: "Solving problems daily — arrays, trees, graphs, and dynamic programming.",
-    progress: 60,
+    desc: "500+ problems solved, LeetCode rating 1600+ — daily practice on arrays, trees, graphs, and dynamic programming.",
+    progress: 75,
   },
   {
     icon: Cpu,
     accent: "#7c3aed",
     title: "System Design",
-    desc: "Learning how to design scalable systems — load balancing, caching, DB sharding.",
+    desc: "Learning how to design scalable systems — load balancing, caching, DB sharding, and distributed architecture.",
     progress: 40,
   },
 ];
