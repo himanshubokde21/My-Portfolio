@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Send, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -18,8 +18,7 @@ const contactInfo = [
 
 const socialLinks = [
   { icon: Linkedin, href: "#", label: "LinkedIn", color: "#2563eb" },
-  { icon: Github, href: "#", label: "GitHub", color: "#a78bfa" },
-  { icon: Twitter, href: "#", label: "Twitter", color: "#38bdf8" },
+  { icon: Github, href: "https://github.com/himanshubokde21", label: "GitHub", color: "#a78bfa" },
 ];
 
 function ContactCodeBlock() {

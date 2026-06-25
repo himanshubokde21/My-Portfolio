@@ -1,31 +1,13 @@
 import { motion } from "framer-motion";
-import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import InteractiveProfile from "../common/interactive-profile";
 import profileImage2 from "@assets/profile-image-2.png";
-import { MapPin, Server, Database, Globe } from "lucide-react";
+import { MapPin, Code2, BookOpen, Rocket } from "lucide-react";
 
-const stats = [
-  { target: 40, label: "Projects Shipped", icon: Globe },
-  { target: 3, label: "Years Experience", icon: Server },
-  { target: 15, label: "APIs Built", icon: Database },
-  { target: 8, label: "Happy Clients", icon: Globe },
+const highlights = [
+  { icon: Code2, label: "Backend Focus", desc: "Node.js · Express · PostgreSQL", accent: "#7c3aed" },
+  { icon: BookOpen, label: "CS Student", desc: "Learning by building real projects", accent: "#2563eb" },
+  { icon: Rocket, label: "Open to Work", desc: "Internships & entry-level roles", accent: "#0891b2" },
 ];
-
-function StatCard({ target, label }: { target: number; label: string }) {
-  const { count, ref } = useCounterAnimation(target);
-  return (
-    <motion.div
-      ref={ref}
-      whileHover={{ scale: 1.05, y: -4 }}
-      className="glass-card glass-card-hover p-5 rounded-xl text-center"
-    >
-      <div className="text-3xl font-bold gradient-text-purple mb-1">
-        {count}<span className="text-violet-400">+</span>
-      </div>
-      <div className="text-slate-400 text-sm">{label}</div>
-    </motion.div>
-  );
-}
 
 function AboutCodeBlock() {
   return (
@@ -47,7 +29,7 @@ function AboutCodeBlock() {
         <div className="ml-4">
           <span className="syn-string">"role"</span>
           <span className="syn-operator">: </span>
-          <span className="syn-string">"Full Stack Developer (Backend Focus)"</span>
+          <span className="syn-string">"CS Student & Backend Developer"</span>
           <span className="syn-bracket">,</span>
         </div>
         <div className="ml-4">
@@ -105,7 +87,7 @@ export default function AboutSection() {
             <span className="gradient-text-purple">About Me</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            A backend-first developer who loves building systems that scale — from REST APIs to full-stack web apps.
+            A CS student who loves building real-world projects — from REST APIs to full-stack web apps.
           </p>
         </motion.div>
 
@@ -125,7 +107,7 @@ export default function AboutSection() {
             <AboutCodeBlock />
           </motion.div>
 
-          {/* Right: bio + stats */}
+          {/* Right: bio + highlights */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -133,7 +115,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-slate-100 mb-4">
-              Building for the Server Room First
+              Student. Builder. Backend Enthusiast.
             </h3>
 
             <div className="flex items-center gap-2 text-slate-500 text-sm mb-6">
@@ -142,32 +124,46 @@ export default function AboutSection() {
             </div>
 
             <p className="text-slate-400 leading-relaxed mb-4">
-              I'm a Full Stack Web Developer with a strong emphasis on backend engineering.
-              My core strength is designing and building scalable REST APIs, microservices,
-              and server-side architectures using Node.js, Express, and PostgreSQL.
+              I'm a Computer Science student with a strong passion for backend development.
+              I build real projects to learn — REST APIs, full-stack apps, and AI-powered tools
+              using Node.js, Express, and PostgreSQL.
             </p>
             <p className="text-slate-400 leading-relaxed mb-4">
-              On the frontend, I work with React and TypeScript to deliver clean, functional
-              interfaces — but my passion lies in what happens behind the scenes: database
-              design, authentication flows, API performance, and system reliability.
+              On the frontend, I work with React and TypeScript to build functional interfaces,
+              but what excites me most is the backend: designing clean APIs, handling auth flows,
+              and structuring databases the right way.
             </p>
             <p className="text-slate-400 leading-relaxed mb-8">
-              Whether it's a greenfield project or a legacy system that needs refactoring,
-              I write code that is readable, tested, and built to last.
+              I'm actively looking for internships and entry-level opportunities where I can
+              contribute, learn from experienced engineers, and grow as a developer.
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
-                  viewport={{ once: true }}
-                >
-                  <StatCard target={stat.target} label={stat.label} />
-                </motion.div>
-              ))}
+            <div className="grid grid-cols-1 gap-3">
+              {highlights.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 * index }}
+                    viewport={{ once: true }}
+                    whileHover={{ x: 4 }}
+                    className="glass-card glass-card-hover flex items-center gap-4 p-4 rounded-xl"
+                  >
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: `${item.accent}20` }}
+                    >
+                      <Icon size={18} style={{ color: item.accent }} />
+                    </div>
+                    <div>
+                      <div className="text-slate-200 text-sm font-semibold">{item.label}</div>
+                      <div className="text-slate-500 text-xs font-mono">{item.desc}</div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>

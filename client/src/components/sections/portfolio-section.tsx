@@ -6,7 +6,7 @@ const projects = [
     id: 1,
     title: "Backend — YouTube Clone",
     description:
-      "Production-grade YouTube backend built with TypeScript & Express. Features video upload/streaming pipeline, JWT auth, subscriptions, likes, comments, watch history, and aggregation pipelines for analytics.",
+      "Production-grade YouTube backend built with TypeScript & Express. Features video upload/streaming pipeline, JWT auth, likes, comments, watch history, and aggregation pipelines for analytics.",
     icon: Play,
     accent: "#ef4444",
     accentLight: "rgba(239,68,68,0.15)",
@@ -20,7 +20,7 @@ const projects = [
     id: 2,
     title: "Backend — WhatsApp Clone",
     description:
-      "WhatsApp-inspired messaging backend in TypeScript. Real-time chat via Socket.io, group management, media sharing, message delivery/read receipts, and contact synchronization.",
+      "WhatsApp-inspired messaging backend in TypeScript. Real-time chat via Socket.io, group management, media sharing, and message delivery/read receipts.",
     icon: MessageCircle,
     accent: "#16a34a",
     accentLight: "rgba(22,163,74,0.15)",
@@ -34,7 +34,7 @@ const projects = [
     id: 3,
     title: "CodeNeura",
     description:
-      "Web-based platform blending AI, data science, and visualization tools for interactive learning. Explore ML concepts, data analysis, and AI-powered workflows — all in the browser.",
+      "AI-powered tool that converts code into clean, readable flowcharts instantly. Paste any code snippet and get a visual diagram — making logic easy to understand and share.",
     icon: Brain,
     accent: "#7c3aed",
     accentLight: "rgba(124,58,237,0.15)",
@@ -48,7 +48,7 @@ const projects = [
     id: 4,
     title: "Remind Candles",
     description:
-      "E-commerce platform for a candle brand built with TypeScript. Product catalog, cart, checkout flow, and order management with a clean storefront UI.",
+      "Birthday reminder web app that helps you never miss a friend's or family member's special day. Set reminders, get notified in advance, and keep track of upcoming birthdays.",
     icon: Flame,
     accent: "#f59e0b",
     accentLight: "rgba(245,158,11,0.15)",

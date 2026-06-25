@@ -27,7 +27,7 @@ export default function Footer() {
           className="text-center"
         >
           <h3 className="text-2xl font-bold mb-4">Himanshu Bokde</h3>
-          <p className="text-gray-400 mb-8">Data Scientist & AI/ML Engineer</p>
+          <p className="text-gray-400 mb-8">CS Student & Backend Developer</p>
           <div className="flex justify-center space-x-6 mb-8">
             {navLinks.map((link, index) => (
               <motion.a
